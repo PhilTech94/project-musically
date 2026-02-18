@@ -13,14 +13,15 @@ class QuoteFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager): void
     {
         $quotesData = [
-            ['price' => 200, 'customer' => 0],
-            ['price' => 50, 'customer' => 1],
-            ['price' => 110, 'customer' => 2],
+            ['price' => 200, 'customer' => 0, 'description' => 'Devis pour musique de mariage'],
+            ['price' => 50, 'customer' => 1, 'description' => 'Devis pour jingle publicitaire'],
+            ['price' => 110, 'customer' => 2, 'description' => null],
         ];
 
         foreach ($quotesData as $index => $data) {
             $quote = new Quote();
             $quote->setPrice($data['price']);
+            $quote->setDescription($data['description']);
             $quote->setCustomer($this->getReference('customer_' . $data['customer'], Customer::class));
             $manager->persist($quote);
             $this->addReference('quote_' . $index, $quote);
