@@ -12,7 +12,6 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
 #[ORM\Entity(repositoryClass: SoundRepository::class)]
 class Sound
 {
-
     use TimestampableEntity;
 
     #[ORM\Id]
@@ -38,12 +37,6 @@ class Sound
     private ?Style $style = null;
 
     /**
-     * @var Collection<int, CustomSound>
-     */
-    #[ORM\OneToMany(targetEntity: CustomSound::class, mappedBy: 'sound')]
-    private Collection $customSounds;
-
-    /**
      * @var Collection<int, BillingSound>
      */
     #[ORM\OneToMany(targetEntity: BillingSound::class, mappedBy: 'sound')]
@@ -51,7 +44,6 @@ class Sound
 
     public function __construct()
     {
-        $this->customSounds = new ArrayCollection();
         $this->billingSounds = new ArrayCollection();
     }
 
@@ -68,7 +60,6 @@ class Sound
     public function setName(string $name): static
     {
         $this->name = $name;
-
         return $this;
     }
 
@@ -80,7 +71,6 @@ class Sound
     public function setDescription(?string $description): static
     {
         $this->description = $description;
-
         return $this;
     }
 
@@ -92,7 +82,6 @@ class Sound
     public function setPrice(int $price): static
     {
         $this->price = $price;
-
         return $this;
     }
 
@@ -104,7 +93,6 @@ class Sound
     public function setCategory(?Category $category): static
     {
         $this->category = $category;
-
         return $this;
     }
 
@@ -116,43 +104,12 @@ class Sound
     public function setStyle(?Style $style): static
     {
         $this->style = $style;
-
         return $this;
     }
 
     public function __toString(): string
     {
         return $this->name ?? '';
-    }
-
-    /**
-     * @return Collection<int, CustomSound>
-     */
-    public function getCustomSounds(): Collection
-    {
-        return $this->customSounds;
-    }
-
-    public function addCustomSound(CustomSound $customSound): static
-    {
-        if (!$this->customSounds->contains($customSound)) {
-            $this->customSounds->add($customSound);
-            $customSound->setSound($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCustomSound(CustomSound $customSound): static
-    {
-        if ($this->customSounds->removeElement($customSound)) {
-            // set the owning side to null (unless already changed)
-            if ($customSound->getSound() === $this) {
-                $customSound->setSound(null);
-            }
-        }
-
-        return $this;
     }
 
     /**
@@ -169,19 +126,16 @@ class Sound
             $this->billingSounds->add($billingSound);
             $billingSound->setSound($this);
         }
-
         return $this;
     }
 
     public function removeBillingSound(BillingSound $billingSound): static
     {
         if ($this->billingSounds->removeElement($billingSound)) {
-            // set the owning side to null (unless already changed)
             if ($billingSound->getSound() === $this) {
                 $billingSound->setSound(null);
             }
         }
-
         return $this;
     }
 }

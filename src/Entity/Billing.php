@@ -2,16 +2,17 @@
 
 namespace App\Entity;
 
+use App\Enum\BillingStatus;
 use App\Repository\BillingRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 #[ORM\Entity(repositoryClass: BillingRepository::class)]
 class Billing
 {
-
     use TimestampableEntity;
 
     #[ORM\Id]
@@ -19,12 +20,26 @@ class Billing
     #[ORM\Column]
     private ?int $id = null;
 
+    #[ORM\Column(length: 100)]
+    private ?string $firstname = null;
+
+    #[ORM\Column(length: 100)]
+    private ?string $lastname = null;
+
+    #[ORM\Column(length: 20)]
+    private ?string $phone = null;
+
+    #[ORM\Column(length: 180)]
+    private ?string $email = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $description = null;
+
     #[ORM\Column]
     private ?int $price = null;
 
-    #[ORM\OneToOne(inversedBy: 'billing', cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Quote $quote = null;
+    #[ORM\Column(enumType: BillingStatus::class)]
+    private ?BillingStatus $status = null;
 
     /**
      * @var Collection<int, BillingSound>
@@ -42,6 +57,61 @@ class Billing
         return $this->id;
     }
 
+    public function getFirstname(): ?string
+    {
+        return $this->firstname;
+    }
+
+    public function setFirstname(string $firstname): static
+    {
+        $this->firstname = $firstname;
+        return $this;
+    }
+
+    public function getLastname(): ?string
+    {
+        return $this->lastname;
+    }
+
+    public function setLastname(string $lastname): static
+    {
+        $this->lastname = $lastname;
+        return $this;
+    }
+
+    public function getPhone(): ?string
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(string $phone): static
+    {
+        $this->phone = $phone;
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): static
+    {
+        $this->email = $email;
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): static
+    {
+        $this->description = $description;
+        return $this;
+    }
+
     public function getPrice(): ?int
     {
         return $this->price;
@@ -50,19 +120,17 @@ class Billing
     public function setPrice(int $price): static
     {
         $this->price = $price;
-
         return $this;
     }
 
-    public function getQuote(): ?Quote
+    public function getStatus(): ?BillingStatus
     {
-        return $this->quote;
+        return $this->status;
     }
 
-    public function setQuote(Quote $quote): static
+    public function setStatus(BillingStatus $status): static
     {
-        $this->quote = $quote;
-
+        $this->status = $status;
         return $this;
     }
 
@@ -80,19 +148,16 @@ class Billing
             $this->billingSounds->add($billingSound);
             $billingSound->setBilling($this);
         }
-
         return $this;
     }
 
     public function removeBillingSound(BillingSound $billingSound): static
     {
         if ($this->billingSounds->removeElement($billingSound)) {
-            // set the owning side to null (unless already changed)
             if ($billingSound->getBilling() === $this) {
                 $billingSound->setBilling(null);
             }
         }
-
         return $this;
     }
 }
