@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Catalogue{% endblock %}
+
+{% block body %}
+<div class="catalogue">
+
+    {# ========== PARTIE 1 : TAGS ========== #}
+    <section class="catalogue__tags">
+        <h2>Catégories</h2>
+        <div class="tags-list">
+            <a href="{{ path('app_catalogue') }}"
+               class="tag {{ activeCategoryId is null and activeStyleId is null ? 'tag--active' }}">
+                Tous
+            </a>
+            {% for category in categories %}
+                <a href="{{ path('app_catalogue', {category: category.id}) }}"
+                   class="tag {{ activeCategoryId == category.id ? 'tag--active' }}">
+                    {{ category.name }}
+                </a>
+            {% endfor %}
+        </div>
+
+        <h2>Styles</h2>
+        <div class="tags-list">
+            {% for style in styles %}
+                <a href="{{ path('app_catalogue', {style: style.id}) }}"
+                   class="tag {{ activeStyleId == style.id ? 'tag--active' }}">
+                    {{ style.name }}
+                </a>
+            {% endfor %}
+        </div>
+    </section>
+
+    {# ========== PARTIE 2 : FILTRES ACTIFS ========== #}
+    {% if activeCategoryId or activeStyleId %}
+    <section class="catalogue__filters">
+        <p>Filtres actifs :
+            {% if activeCategoryId %}
+                <span class="filter-badge">Catégorie #{{ activeCategoryId }}</span>
+            {% endif %}
+            {% if activeStyleId %}
+                <span class="filter-badge">Style #{{ activeStyleId }}</span>
+            {% endif %}
+            <a href="{{ path('app_catalogue') }}">✕ Réinitialiser</a>
+        </p>
+    </section>
+    {% endif %}
+
+    {# ========== PARTIE 3 : SONS ========== #}
+    <section class="catalogue__sounds">
+        <h2>Sons disponibles ({{ sounds|length }})</h2>
+
+        {% if sounds is empty %}
+            <p>Aucun son ne correspond à votre recherche.</p>
+        {% else %}
+            <div class="sounds-grid">
+                {% for sound in sounds %}
+                    <div class="sound-card">
+                        <h3>{{ sound.name }}</h3>
+                        <p>{{ sound.description }}</p>
+                        <p>Catégorie : {{ sound.category.name }}</p>
+                        <p>Style : {{ sound.style.name }}</p>
+                        <p class="sound-card__price">{{ sound.price / 100 }} €</p>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </section>
+
+</div>
+{% endblock %}

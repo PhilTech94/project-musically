@@ -16,28 +16,26 @@ class SoundRepository extends ServiceEntityRepository
         parent::__construct($registry, Sound::class);
     }
 
-    //    /**
-    //     * @return Sound[] Returns an array of Sound objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('s')
-    //            ->andWhere('s.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('s.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+    // src/Repository/SoundRepository.php
+    // Ajouter cette méthode dans la classe existante
 
-    //    public function findOneBySomeField($value): ?Sound
-    //    {
-    //        return $this->createQueryBuilder('s')
-    //            ->andWhere('s.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+    public function findByFilters(?int $categoryId, ?int $styleId): array
+    {
+        $qb = $this->createQueryBuilder('s')
+            ->leftJoin('s.category', 'c')
+            ->leftJoin('s.style', 'st')
+            ->addSelect('c', 'st'); // optimisation : évite les requêtes N+1
+
+        if ($categoryId) {
+            $qb->andWhere('c.id = :categoryId')
+                ->setParameter('categoryId', $categoryId);
+        }
+
+        if ($styleId) {
+            $qb->andWhere('st.id = :styleId')
+                ->setParameter('styleId', $styleId);
+        }
+
+        return $qb->getQuery()->getResult();
+    }
 }
