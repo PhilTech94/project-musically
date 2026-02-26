@@ -1,3 +1,96 @@
+/* ========== BASE ========== */
 body {
     background-color: skyblue;
+    font-family: Arial, sans-serif;
+}
+
+/* ========== NAVIGATION ========== */
+.nav {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 20px;
+}
+
+.nav a {
+    margin-right: 15px;
+}
+
+/* ========== FOOTER ========== */
+.footer {
+    margin-top: 40px;
+    padding: 15px;
+    border-top: 1px solid #ddd;
+    text-align: center;
+}
+
+/* ========== COMMUN : H1 ET CONTENEURS ========== */
+.page-h1,
+.page-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.page-h1 {
+    margin-bottom: 20px;
+}
+
+/* ========== ACCUEIL ========== */
+.home {
+    max-width: 900px;
+    margin: 60px auto;
+    text-align: center;
+}
+
+.home__subtitle {
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+.home__slideshow {
+    margin: 40px auto;
+    height: 220px;
+    border-radius: 12px;
+    background: #eaeaea;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.home__demos {
+    margin: 40px auto;
+    text-align: center;
+}
+
+.home__demos-grid {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.demo-card {
+    width: 200px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.home__how-to-buy {
+    margin: 50px auto;
+    max-width: 700px;
+    text-align: center;
+}
+
+.home__how-to-buy p {
+    margin-top: 15px;
+}
+
+/* ========== MENTIONS LÉGALES ========== */
+.legal {
+    line-height: 1.7;
+}
+
+.legal section {
+    margin-bottom: 30px;
 }
