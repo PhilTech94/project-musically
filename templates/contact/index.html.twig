@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact
+{% endblock %}
+
+{% block body %}
+	<div style="max-width: 900px; margin: 60px auto; font-family: Arial, sans-serif;">
+
+		<h1>Contact</h1>
+
+		<!-- Informations administrateur -->
+		<div style="margin-bottom: 40px; padding: 20px; border: 1px solid #ddd; border-radius: 8px;">
+			<h3>Coordonnées</h3>
+			<p>
+				<strong>Téléphone :</strong>
+				06 00 00 00 00</p>
+			<p>
+				<strong>Adresse :</strong>
+				10 rue de Paris, 75000 Paris</p>
+			<p>
+				<strong>Email :</strong>
+				contact@musically.fr</p>
+		</div>
+
+		<!-- Formulaire -->
+		<h3>Envoyer un message</h3>
+
+		{{ form_start(form) }}
+
+		<div style="margin-bottom: 10px;">
+			{{ form_row(form.firstname) }}
+		</div>
+
+		<div style="margin-bottom: 10px;">
+			{{ form_row(form.lastname) }}
+		</div>
+
+		<div style="margin-bottom: 10px;">
+			{{ form_row(form.phone) }}
+		</div>
+
+		<div style="margin-bottom: 10px;">
+			{{ form_row(form.email) }}
+		</div>
+
+		<div style="margin-bottom: 10px;">
+			{{ form_row(form.message) }}
+		</div>
+
+		<button type="submit" style="padding:10px; cursor:pointer;">
+			Envoyer
+		</button>
+
+		{{ form_end(form) }}
+
+	</div>
+{% endblock %}
