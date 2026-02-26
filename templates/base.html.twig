@@ -2,21 +2,20 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+
 		<title>
 			{% block title %}Projet Musically
 			{% endblock %}
 		</title>
 
-		<link rel="icon" href="data:image/svg+xml,
-<<<<<<< HEAD
-			            <svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22>
-			            <text y=%221.2em%22 font-size=%2296%22>🎵</text>
-			            </svg>"> {% block stylesheets %}{% endblock %}
-=======
-			    <svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22>
+		<link
+		rel="icon" href="data:image/svg+xml,
+			        <svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22>
 			        <text y=%221.2em%22 font-size=%2296%22>🎵</text>
-			    </svg>"> {% block stylesheets %}{% endblock %}
->>>>>>> c756065 (Ajout page Contact avec formulaire et coordonnées admin)
+			        </svg>">
+
+		{# Un seul bloc stylesheets #}
+		{% block stylesheets %}{% endblock %}
 
 		{% block javascripts %}
 			{% block importmap %}
@@ -29,34 +28,20 @@
 		style="margin:0; font-family: Arial, sans-serif;">
 
 		<!-- MENU -->
-<<<<<<< HEAD
 		<nav class="nav">
 			<a href="{{ path('app_home') }}">Accueil</a>
 			<a href="{{ path('app_catalogue') }}">Catalogue</a>
 			<a href="#">Catégories</a>
 			<a href="#">À propos</a>
-			<a href="#">Contact</a>
+			<a href="{{ path('app_contact') }}">Contact</a>
 			<a href="#">Panier</a>
-			<a href="#">Devis</a>
+			<a href="{{ path('app_devis') }}">Devis</a>
 		</nav>
 
 		<!-- H1 DE LA PAGE -->
 		{% block h1 %}{% endblock %}
 
 		<!-- CONTENU DES PAGES -->
-=======
-		<nav style="padding:15px; border-bottom:1px solid #ddd; margin-bottom:20px;">
-			<a href="{{ path('app_home') }}" style="margin-right:15px;">Accueil</a>
-			<a href="#" style="margin-right:15px;">Catalogue</a>
-			<a href="#" style="margin-right:15px;">Catégories</a>
-			<a href="#" style="margin-right:15px;">À propos</a>
-			<a href="{{ path('app_contact') }}" style="margin-right:15px;">Contact</a>
-			<a href="#" style="margin-right:15px;">Panier</a>
-			<a href="{{ path('app_devis') }}" style="margin-right:15px;">Devis</a>
-		</nav>
-
-		<!-- CONTENU -->
->>>>>>> c756065 (Ajout page Contact avec formulaire et coordonnées admin)
 		{% block body %}{% endblock %}
 
 		<!-- FOOTER -->
