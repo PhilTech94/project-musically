@@ -1,0 +1,290 @@
+/* --- Layout général --- */
+.catalogue {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    font-family: Arial, sans-serif;
+}
+
+/* ==========================================
+   PARTIE 1 : TAGS
+   ========================================== */
+
+.catalogue__tags {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #ddd;
+}
+
+.tag {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 20px;
+    border: 1.5px solid #333;
+    background-color: transparent;
+    color: #333;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.tag:hover,
+.tag--active {
+    background-color: #333;
+    color: #fff;
+}
+
+.tags-separator {
+    width: 1px;
+    height: 24px;
+    background-color: #ddd;
+    margin: 0 4px;
+}
+
+/* ==========================================
+   PARTIE 2 : FILTRES DROPDOWNS
+   ========================================== */
+
+.catalogue__filters {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+/* Conteneur de chaque dropdown */
+.dropdown {
+    position: relative;
+}
+
+/* Bouton déclencheur */
+.dropdown__trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border: 1.5px solid #333;
+    border-radius: 8px;
+    background-color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.dropdown__trigger:hover,
+.dropdown--open .dropdown__trigger {
+    background-color: #333;
+    color: #fff;
+}
+
+/* Flèche du dropdown */
+.dropdown__arrow {
+    font-size: 10px;
+    transition: transform 0.2s;
+}
+
+.dropdown--open .dropdown__arrow {
+    transform: rotate(180deg);
+}
+
+/* Panneau déroulant */
+.dropdown__panel {
+    display: none;
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    min-width: 200px;
+    background-color: #fff;
+    border: 1.5px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    padding: 12px;
+    z-index: 100;
+}
+
+.dropdown--open .dropdown__panel {
+    display: block;
+}
+
+/* Options dans le panneau */
+.dropdown__option {
+    display: block;
+    padding: 8px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    transition: background-color 0.15s;
+    cursor: pointer;
+}
+
+.dropdown__option:hover,
+.dropdown__option--active {
+    background-color: #f0f0f0;
+    font-weight: 600;
+}
+
+/* Champs prix dans le panneau */
+.price-inputs {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.price-inputs input {
+    width: 80px;
+    padding: 6px 10px;
+    border: 1.5px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.price-inputs span {
+    color: #999;
+    font-size: 13px;
+}
+
+.btn-apply {
+    display: block;
+    width: 100%;
+    margin-top: 12px;
+    padding: 8px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-apply:hover {
+    background-color: #555;
+}
+
+/* Bouton réinitialiser */
+.btn-reset {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 16px;
+    border: 1.5px solid #e74c3c;
+    border-radius: 8px;
+    color: #e74c3c;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.btn-reset:hover {
+    background-color: #e74c3c;
+    color: #fff;
+}
+
+/* ==========================================
+   PARTIE 3 : SONS
+   ========================================== */
+
+.catalogue__sounds {
+    margin-top: 8px;
+}
+
+.sounds-count {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.sounds-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+.sound-card {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: box-shadow 0.2s;
+}
+
+.sound-card:hover {
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.sound-card__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sound-card__title {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.btn-play {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    background-color: #333;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background-color 0.2s;
+}
+
+.btn-play:hover {
+    background-color: #555;
+}
+
+.sound-card__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.sound-card__footer {
+    margin-top: auto;
+}
+
+.btn-buy {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background-color: #2ecc71;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.btn-buy:hover {
+    background-color: #27ae60;
+}

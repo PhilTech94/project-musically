@@ -1,72 +1,164 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Catalogue{% endblock %}
+{% block title %}Catalogue
+{% endblock %}
+
+{% block h1 %}
+	<h1 style="max-width:1200px; margin: 0 auto 20px; padding: 0 20px; font-family: Arial, sans-serif;">Catalogue</h1>
+{% endblock %}
 
 {% block body %}
-<div class="catalogue">
+	<div
+		class="catalogue">
 
-    {# ========== PARTIE 1 : TAGS ========== #}
-    <section class="catalogue__tags">
-        <h2>Catégories</h2>
-        <div class="tags-list">
-            <a href="{{ path('app_catalogue') }}"
-               class="tag {{ activeCategoryId is null and activeStyleId is null ? 'tag--active' }}">
-                Tous
-            </a>
-            {% for category in categories %}
-                <a href="{{ path('app_catalogue', {category: category.id}) }}"
-                   class="tag {{ activeCategoryId == category.id ? 'tag--active' }}">
-                    {{ category.name }}
-                </a>
-            {% endfor %}
-        </div>
+		{# ========== PARTIE 1 : TAGS ========== #}
+		<section
+			class="catalogue__tags">
 
-        <h2>Styles</h2>
-        <div class="tags-list">
-            {% for style in styles %}
-                <a href="{{ path('app_catalogue', {style: style.id}) }}"
-                   class="tag {{ activeStyleId == style.id ? 'tag--active' }}">
-                    {{ style.name }}
-                </a>
-            {% endfor %}
-        </div>
-    </section>
+			{# Tag "Tous" séparé des autres #}
+			<a href="{{ path('app_catalogue') }}" class="tag {{ activeCategoryId is null and activeStyleId is null ? 'tag--active' }}">
+				Tous
+			</a>
 
-    {# ========== PARTIE 2 : FILTRES ACTIFS ========== #}
-    {% if activeCategoryId or activeStyleId %}
-    <section class="catalogue__filters">
-        <p>Filtres actifs :
-            {% if activeCategoryId %}
-                <span class="filter-badge">Catégorie #{{ activeCategoryId }}</span>
-            {% endif %}
-            {% if activeStyleId %}
-                <span class="filter-badge">Style #{{ activeStyleId }}</span>
-            {% endif %}
-            <a href="{{ path('app_catalogue') }}">✕ Réinitialiser</a>
-        </p>
-    </section>
-    {% endif %}
+			<span class="tags-separator"></span>
 
-    {# ========== PARTIE 3 : SONS ========== #}
-    <section class="catalogue__sounds">
-        <h2>Sons disponibles ({{ sounds|length }})</h2>
+			{# Tags catégories #}
+			{% for category in categories %}
+				<a href="{{ path('app_catalogue', {category: category.id}) }}" class="tag {{ activeCategoryId == category.id ? 'tag--active' }}">
+					{{ category.name }}
+				</a>
+			{% endfor %}
 
-        {% if sounds is empty %}
-            <p>Aucun son ne correspond à votre recherche.</p>
-        {% else %}
-            <div class="sounds-grid">
-                {% for sound in sounds %}
-                    <div class="sound-card">
-                        <h3>{{ sound.name }}</h3>
-                        <p>{{ sound.description }}</p>
-                        <p>Catégorie : {{ sound.category.name }}</p>
-                        <p>Style : {{ sound.style.name }}</p>
-                        <p class="sound-card__price">{{ sound.price / 100 }} €</p>
-                    </div>
-                {% endfor %}
-            </div>
-        {% endif %}
-    </section>
+			<span class="tags-separator"></span>
 
-</div>
+			{# Tags styles #}
+			{% for style in styles %}
+				<a href="{{ path('app_catalogue', {style: style.id}) }}" class="tag {{ activeStyleId == style.id ? 'tag--active' }}">
+					{{ style.name }}
+				</a>
+			{% endfor %}
+
+		</section>
+
+		{# ========== PARTIE 2 : FILTRES DROPDOWNS ========== #}
+		<section
+			class="catalogue__filters">
+
+			{# Dropdown Prix #}
+			<div class="dropdown" id="dropdown-price">
+				<button class="dropdown__trigger" onclick="toggleDropdown('dropdown-price')">
+					Prix
+					<span class="dropdown__arrow">▼</span>
+				</button>
+				<div class="dropdown__panel">
+					<form method="get" action="{{ path('app_catalogue') }}" id="form-price">
+						{% if activeCategoryId %}
+							<input type="hidden" name="category" value="{{ activeCategoryId }}">
+						{% endif %}
+						{% if activeStyleId %}
+							<input type="hidden" name="style" value="{{ activeStyleId }}">
+						{% endif %}
+						<input type="hidden" name="sort" value="{{ sort }}">
+						<input type="hidden" name="order" value="{{ order }}">
+						<div class="price-inputs">
+							<input type="number" name="price_min" min="0" value="{{ priceMin }}" placeholder="0">
+							€
+							<span>→</span>
+							<input type="number" name="price_max" min="0" value="{{ priceMax }}" placeholder="600">
+							€
+						</div>
+						<button type="submit" class="btn-apply">Appliquer</button>
+					</form>
+				</div>
+			</div>
+
+			{# Dropdown Trier par #}
+			<div class="dropdown" id="dropdown-sort">
+				<button class="dropdown__trigger" onclick="toggleDropdown('dropdown-sort')">
+					Trier par
+					<span class="dropdown__arrow">▼</span>
+				</button>
+				<div class="dropdown__panel">
+					<a href="{{ path('app_catalogue', {category: activeCategoryId, style: activeStyleId, price_min: priceMin, price_max: priceMax, sort: 'name', order: 'ASC'}) }}" class="dropdown__option {{ sort == 'name' ? 'dropdown__option--active' }}">
+						Nom A→Z
+					</a>
+					<a href="{{ path('app_catalogue', {category: activeCategoryId, style: activeStyleId, price_min: priceMin, price_max: priceMax, sort: 'price', order: 'ASC'}) }}" class="dropdown__option {{ sort == 'price' and order == 'ASC' ? 'dropdown__option--active' }}">
+						Prix croissant
+					</a>
+					<a href="{{ path('app_catalogue', {category: activeCategoryId, style: activeStyleId, price_min: priceMin, price_max: priceMax, sort: 'price', order: 'DESC'}) }}" class="dropdown__option {{ sort == 'price' and order == 'DESC' ? 'dropdown__option--active' }}">
+						Prix décroissant
+					</a>
+				</div>
+			</div>
+
+			{# Bouton réinitialiser — visible uniquement si un filtre est actif #}
+			{% if activeCategoryId or activeStyleId or priceMin or priceMax or sort != 'name' %}
+				<a href="{{ path('app_catalogue') }}" class="btn-reset">✕ Réinitialiser</a>
+			{% endif %}
+
+		</section>
+
+		{# ========== PARTIE 3 : SONS ========== #}
+		<section class="catalogue__sounds">
+			<p class="sounds-count">{{ sounds|length }}
+				son(s) disponible(s)</p>
+
+			{% if sounds is empty %}
+				<p>Aucun son ne correspond à votre recherche.</p>
+			{% else %}
+				<div class="sounds-grid">
+					{% for sound in sounds %}
+						<div class="sound-card">
+
+							<div class="sound-card__header">
+								<h3 class="sound-card__title">{{ sound.name }}</h3>
+								<button class="btn-play" title="Écouter l'extrait">▶</button>
+							</div>
+
+							<div class="sound-card__tags">
+								<a href="{{ path('app_catalogue', {category: sound.category.id}) }}" class="tag">
+									{{ sound.category.name }}
+								</a>
+								<a href="{{ path('app_catalogue', {style: sound.style.id}) }}" class="tag">
+									{{ sound.style.name }}
+								</a>
+							</div>
+
+							<div class="sound-card__footer">
+								<a href="#" class="btn-buy">
+									🛒
+									{{ (sound.price / 100)|number_format(2, ',', ' ') }}
+									€
+								</a>
+							</div>
+
+						</div>
+					{% endfor %}
+				</div>
+			{% endif %}
+		</section>
+
+	</div>
+
+	<script>
+		function toggleDropdown(id) { // Ferme tous les autres dropdowns ouverts
+document.querySelectorAll('.dropdown').forEach(function (el) {
+if (el.id !== id) {
+el.classList.remove('dropdown--open');
+}
+});
+// Ouvre ou ferme le dropdown ciblé
+document.getElementById(id).classList.toggle('dropdown--open');
+}
+
+// Ferme les dropdowns si on clique ailleurs sur la page
+document.addEventListener('click', function (e) {
+if (! e.target.closest('.dropdown')) {
+document.querySelectorAll('.dropdown').forEach(function (el) {
+el.classList.remove('dropdown--open');
+});
+}
+});
+	</script>
+
 {% endblock %}
