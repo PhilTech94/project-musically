@@ -22,14 +22,14 @@
 	<body>
 
 		<!-- MENU -->
-		<nav style="padding: 15px; border-bottom: 1px solid #ddd; margin-bottom: 20px; font-family: Arial, sans-serif;">
-			<a href="{{ path('app_home') }}" style="margin-right: 15px;">Accueil</a>
-			<a href="{{ path('app_catalogue') }}" style="margin-right: 15px;">Catalogue</a>
-			<a href="#" style="margin-right: 15px;">Catégories</a>
-			<a href="#" style="margin-right: 15px;">À propos</a>
-			<a href="#" style="margin-right: 15px;">Contact</a>
-			<a href="#" style="margin-right: 15px;">Panier</a>
-			<a href="#" style="margin-right: 15px;">Devis</a>
+		<nav class="nav">
+			<a href="{{ path('app_home') }}">Accueil</a>
+			<a href="{{ path('app_catalogue') }}">Catalogue</a>
+			<a href="#">Catégories</a>
+			<a href="#">À propos</a>
+			<a href="#">Contact</a>
+			<a href="#">Panier</a>
+			<a href="#">Devis</a>
 		</nav>
 
 		<!-- H1 DE LA PAGE -->
@@ -37,6 +37,11 @@
 
 		<!-- CONTENU DES PAGES -->
 		{% block body %}{% endblock %}
+
+		<!-- FOOTER -->
+		<footer class="footer">
+			<a href="{{ path('app_legal') }}">Mentions légales</a>
+		</footer>
 
 	</body>
 </html>
