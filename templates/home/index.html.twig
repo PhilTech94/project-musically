@@ -1,36 +1,90 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil{% endblock %}
+{% block title %}Accueil
+{% endblock %}
 
 {% block body %}
-    <div class="home">
 
-        <h1>Des créations musicales pour tous vos événements</h1>
+	<div
+		style="text-align:center; padding:40px;">
 
-        <p class="home__subtitle">
-            Mariage • Anniversaire • Soirée • Naissance
-        </p>
+		<!-- TITRE -->
+		<h1>Des créations musicales pour tous vos événements</h1>
+		<p>Mariage • Anniversaire • Soirée • Naissance</p>
 
-        <div class="home__slideshow">
-            <strong>Slideshow (à venir)</strong>
-        </div>
+		<!-- IMAGES CATEGORIES -->
+		<div
+			style="max-width:900px; margin:40px auto; display:grid; grid-template-columns:repeat(2, 1fr); gap:25px;">
 
-        <div class="home__demos">
-            <h2>Écoutez quelques exemples</h2>
-            <div class="home__demos-grid">
-                <div class="demo-card">Démo 1</div>
-                <div class="demo-card">Démo 2</div>
-                <div class="demo-card">Démo 3</div>
-            </div>
-        </div>
+			<!-- Mariage -->
+			<div>
+				<a href="{{ path('app_catalogue') }}?category=5">
+					<img src="{{ asset('images/mariage.jpg') }}" alt="Mariage" style="width:100%; height:220px; object-fit:cover; border-radius:10px;">
+				</a>
+				<div style="margin-top:8px;">
+					<a href="{{ path('app_catalogue') }}?category=5">
+						Musique mariage
+					</a>
+				</div>
+			</div>
 
-    </div>
+			<!-- Anniversaire -->
+			<div>
+				<a href="{{ path('app_catalogue') }}?category=7">
+					<img src="{{ asset('images/anniverssaire.jpg') }}" alt="Anniversaire" style="width:100%; height:220px; object-fit:cover; border-radius:10px;">
+				</a>
+				<div style="margin-top:8px;">
+					<a href="{{ path('app_catalogue') }}?category=7">
+						Musique anniversaire
+					</a>
+				</div>
+			</div>
 
-    <div class="home__how-to-buy">
-        <h2>Comment acheter ?</h2>
-        <p>
-            Choisissez votre création musicale, ajoutez-la à votre panier
-            et finalisez votre commande en quelques clics.
-        </p>
-    </div>
+			<!-- Naissance -->
+			<div>
+				<a href="{{ path('app_catalogue') }}?category=6">
+					<img src="{{ asset('images/naissance.jpg') }}" alt="Naissance" style="width:100%; height:220px; object-fit:cover; border-radius:10px;">
+				</a>
+				<div style="margin-top:8px;">
+					<a href="{{ path('app_catalogue') }}?category=6">
+						Musique naissance
+					</a>
+				</div>
+			</div>
+
+			<!-- Autres -->
+			<div>
+				<a href="{{ path('app_catalogue') }}">
+					<img src="{{ asset('images/autres.jpg') }}" alt="Autres projets" style="width:100%; height:220px; object-fit:cover; border-radius:10px;">
+				</a>
+				<div style="margin-top:8px;">
+					<a href="{{ path('app_catalogue') }}">
+						Autres projets musicaux
+					</a>
+				</div>
+			</div>
+
+		</div>
+
+		<!-- DEMOS CLIQUABLES (SANS ACTION) -->
+		<h2>Écoutez quelques exemples</h2>
+
+		<div style="margin-top:20px; display:flex; gap:20px; justify-content:center;">
+
+			<button type="button" style="padding:15px 30px; background:#eee; border:1px solid #999; border-radius:6px; cursor:pointer;">
+				Démo 1
+			</button>
+
+			<button type="button" style="padding:15px 30px; background:#eee; border:1px solid #999; border-radius:6px; cursor:pointer;">
+				Démo 2
+			</button>
+
+			<button type="button" style="padding:15px 30px; background:#eee; border:1px solid #999; border-radius:6px; cursor:pointer;">
+				Démo 3
+			</button>
+
+		</div>
+
+	</div>
+
 {% endblock %}
