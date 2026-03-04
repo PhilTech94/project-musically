@@ -126,11 +126,11 @@
 							</div>
 
 							<div class="sound-card__footer">
-								<a href="#" class="btn-buy">
+								<button class="btn-buy" onclick="addToCart({{ sound.id }})">
 									🛒
 									{{ (sound.price / 100)|number_format(2, ',', ' ') }}
 									€
-								</a>
+								</button>
 							</div>
 
 						</div>
