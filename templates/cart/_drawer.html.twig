@@ -1,0 +1,26 @@
+<div id="cart-overlay" class="cart-overlay" aria-hidden="true"></div>
+
+<aside id="cart-drawer" class="cart-drawer" aria-label="Panier" aria-hidden="true">
+
+    <div class="cart-drawer__header">
+        <h2 class="cart-drawer__title">
+            Mon panier (<span id="cart-count">0</span>)
+        </h2>
+        <button id="cart-close" class="cart-drawer__close" aria-label="Fermer le panier">✕</button>
+    </div>
+
+    <div id="cart-items" class="cart-drawer__items">
+        {# Contenu injecté dynamiquement par cart.js #}
+    </div>
+
+    <div class="cart-drawer__footer">
+        <div class="cart-drawer__promo">
+            <label for="promo-code">Un code promo ?</label>
+            <input type="text" id="promo-code" name="promo_code" placeholder="Code promo">
+        </div>
+        <button id="cart-checkout" class="cart-drawer__checkout">
+            Commander – <span id="cart-total">0,00</span> €
+        </button>
+    </div>
+
+</aside>

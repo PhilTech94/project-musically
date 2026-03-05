@@ -3,9 +3,12 @@
 {% block title %}Devis
 {% endblock %}
 
+{% block h1 %}
+	<h1 class="page-h1">Demande de devis</h1>
+{% endblock %}
+
 {% block body %}
 	<div style="max-width: 900px; margin: 60px auto; font-family: Arial, sans-serif;">
-		<h1>Demande de devis</h1>
 
 		{% for message in app.flashes('success') %}
 			<div style="padding:10px; margin:15px 0; border:1px solid #0a0; background:#efe;">
