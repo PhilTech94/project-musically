@@ -8,14 +8,14 @@
 			{% endblock %}
 		</title>
 
-		<link
-		rel="icon" href="data:image/svg+xml,
-						<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22>
-						<text y=%221.2em%22 font-size=%2296%22>🎵</text>
-						</svg>">
+		<link rel="icon" href="data:image/svg+xml,
+						        <svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22>
+						        <text y=%221.2em%22 font-size=%2296%22>🎵</text>
+						        </svg>">
 
-		{# Un seul bloc stylesheets #}
-		{% block stylesheets %}{% endblock %}
+		{% block stylesheets %}
+			<link rel="stylesheet" href="{{ asset('css/style.css') }}">
+		{% endblock %}
 
 		{% block javascripts %}
 			{% block importmap %}
@@ -24,38 +24,25 @@
 		{% endblock %}
 	</head>
 
-	<body
-		style="margin:0; font-family: Arial, sans-serif;">
+	<body>
 
-		<!-- MENU -->
 		<nav class="nav">
 			<a href="{{ path('app_home') }}">Accueil</a>
 			<a href="{{ path('app_catalogue') }}">Catalogue</a>
 			<a href="{{ path('app_about') }}">À propos</a>
 			<a href="{{ path('app_contact') }}">Contact</a>
+			<a href="#">Panier</a>
 			<a href="{{ path('app_devis') }}">Devis</a>
-			<button id="cart-btn" class="nav-cart-btn" aria-label="Ouvrir le panier">
-				<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-					<circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
-					<path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
-				</svg>
-				<span id="cart-badge" class="nav-cart-badge is-hidden">0</span>
-			</button>
 		</nav>
 
-		<!-- H1 DE LA PAGE -->
-		{% block h1 %}{% endblock %}
+		<div class="container"> {% block h1 %}{% endblock %}{% block body %}{% endblock %}
+			</div>
 
-		<!-- CONTENU -->
-		{% block body %}{% endblock %}
+			<footer class="footer">
+				<div class="container">
+					<a href="{{ path('app_legal') }}">Mentions légales</a>
+				</div>
+			</footer>
 
-		<!-- FOOTER -->
-		<footer class="footer">
-			<a href="{{ path('app_legal') }}">Mentions légales</a>
-		</footer>
-
-		{% include 'cart/_drawer.html.twig' %}
-		<script src="{{ asset('js/cart.js') }}"></script>
-
-	</body>
-</html>
+		</body>
+	</html>
