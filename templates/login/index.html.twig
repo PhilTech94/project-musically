@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion — Musically
+{% endblock %}
+
+{% block h1 %}
+	<h1 class="page-h1">Connexion</h1>
+{% endblock %}
+
+{% block body %}
+	{% if error %}
+		<div class="form-alert form-alert--error">
+			{{ error.messageKey|trans(error.messageData, 'security') }}
+		</div>
+	{% endif %}
+
+	{% for message in app.flashes('success') %}
+		<div class="form-alert form-alert--success">
+			{{ message }}
+		</div>
+	{% endfor %}
+
+	<form class="auth-form" action="{{ path('app_login') }}" method="post">
+		<div class="auth-form__field">
+			<label for="email" class="auth-form__label">Adresse email</label>
+			<input type="email" id="email" name="email" class="auth-form__input" value="{{ last_username }}" autocomplete="email" required>
+		</div>
+
+		<div class="auth-form__field">
+			<label for="password" class="auth-form__label">Mot de passe</label>
+			<input type="password" id="password" name="password" class="auth-form__input" autocomplete="current-password" required>
+		</div>
+
+		<div class="auth-form__remember">
+			<input type="checkbox" id="remember_me" name="_remember_me">
+			<label for="remember_me">Se souvenir de moi</label>
+		</div>
+
+		<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+		<button type="submit" class="auth-form__submit">Se connecter</button>
+	</form>
+
+	<p class="auth-form__switch">
+		Pas encore de compte ?
+		<a href="{{ path('app_register') }}">S'inscrire</a>
+	</p>
+{% endblock %}
