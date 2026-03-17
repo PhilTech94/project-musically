@@ -47,6 +47,9 @@ class Billing
     #[ORM\OneToMany(targetEntity: BillingSound::class, mappedBy: 'billing')]
     private Collection $billingSounds;
 
+    #[ORM\ManyToOne(inversedBy: 'billings')]
+    private ?User $user = null;
+
     public function __construct()
     {
         $this->billingSounds = new ArrayCollection();
@@ -158,6 +161,18 @@ class Billing
                 $billingSound->setBilling(null);
             }
         }
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
+
         return $this;
     }
 }

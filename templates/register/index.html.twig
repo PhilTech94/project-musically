@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription — Musically
+{% endblock %}
+
+{% block h1 %}
+	<h1 class="page-h1">Créer un compte</h1>
+{% endblock %}
+
+{% block body %}
+	{{ form_start(form, {'attr': {'class': 'auth-form'}}) }}
+
+	<div class="auth-form__field">
+		{{ form_label(form.firstname, null, {'label_attr': {'class': 'auth-form__label'}}) }}
+		{{ form_widget(form.firstname, {'attr': {'class': 'auth-form__input'}}) }}
+		{{ form_errors(form.firstname) }}
+	</div>
+
+	<div class="auth-form__field">
+		{{ form_label(form.lastname, null, {'label_attr': {'class': 'auth-form__label'}}) }}
+		{{ form_widget(form.lastname, {'attr': {'class': 'auth-form__input'}}) }}
+		{{ form_errors(form.lastname) }}
+	</div>
+
+	<div class="auth-form__field">
+		{{ form_label(form.phone, null, {'label_attr': {'class': 'auth-form__label'}}) }}
+		{{ form_widget(form.phone, {'attr': {'class': 'auth-form__input'}}) }}
+		{{ form_errors(form.phone) }}
+	</div>
+
+	<div class="auth-form__field">
+		{{ form_label(form.email, null, {'label_attr': {'class': 'auth-form__label'}}) }}
+		{{ form_widget(form.email, {'attr': {'class': 'auth-form__input'}}) }}
+		{{ form_errors(form.email) }}
+	</div>
+
+	<div class="auth-form__field">
+		{{ form_label(form.plainPassword.first, null, {'label_attr': {'class': 'auth-form__label'}}) }}
+		{{ form_widget(form.plainPassword.first, {'attr': {'class': 'auth-form__input'}}) }}
+		{{ form_errors(form.plainPassword.first) }}
+	</div>
+
+	<div class="auth-form__field">
+		{{ form_label(form.plainPassword.second, null, {'label_attr': {'class': 'auth-form__label'}}) }}
+		{{ form_widget(form.plainPassword.second, {'attr': {'class': 'auth-form__input'}}) }}
+		{{ form_errors(form.plainPassword.second) }}
+	</div>
+
+	<button type="submit" class="auth-form__submit">Créer mon compte</button>
+
+	{{ form_end(form) }}
+
+	<p class="auth-form__switch">
+		Déjà un compte ?
+		<a href="{{ path('app_login') }}">Se connecter</a>
+	</p>
+{% endblock %}

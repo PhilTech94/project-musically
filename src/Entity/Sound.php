@@ -42,6 +42,9 @@ class Sound
     #[ORM\OneToMany(targetEntity: BillingSound::class, mappedBy: 'sound')]
     private Collection $billingSounds;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $url = null;
+
     public function __construct()
     {
         $this->billingSounds = new ArrayCollection();
@@ -136,6 +139,18 @@ class Sound
                 $billingSound->setSound(null);
             }
         }
+        return $this;
+    }
+
+    public function getUrl(): ?string
+    {
+        return $this->url;
+    }
+
+    public function setUrl(?string $url): static
+    {
+        $this->url = $url;
+
         return $this;
     }
 }
