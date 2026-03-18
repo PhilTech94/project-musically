@@ -3,91 +3,76 @@
 {% block title %}Accueil
 {% endblock %}
 
-{% block h1 %}
-	<h1 class="page-h1">Des créations musicales pour tous vos événements</h1>
-{% endblock %}
+{% block h1 %}{% endblock %}
 
 {% block body %}
 
-	<div
-		style="text-align:center; padding:40px;">
+	{# ========== HERO ========== #}
+	<section class="hero">
+		<div class="hero__content">
+			<h1 class="hero__title">Des créations musicales pour tous vos événements</h1>
+			<p class="hero__subtitle">Mariage • Anniversaire • Soirée • Naissance</p>
+			<a href="{{ path('app_catalogue') }}" class="hero__cta">Découvrir le catalogue</a>
+		</div>
+	</section>
 
-		<!-- TITRE -->
-		<p>Mariage • Anniversaire • Soirée • Naissance</p>
+	{# ========== GRILLE CATÉGORIES ========== #}
+	<section class="home-categories">
+		<h2 class="home-categories__title">Explorez par occasion</h2>
+		<div class="home-categories__grid">
 
-		<!-- IMAGES CATEGORIES -->
-		<div
-			style="max-width:900px; margin:40px auto; display:grid; grid-template-columns:repeat(2, 1fr); gap:25px;">
-
-			<!-- Mariage -->
-			<div>
-				<a href="{{ path('app_catalogue') }}?category=5">
-					<img src="{{ asset('images/mariage.jpg') }}" alt="Mariage" style="width:100%; height:220px; object-fit:cover; border-radius:10px;">
-				</a>
-				<div style="margin-top:8px;">
-					<a href="{{ path('app_catalogue') }}?category=5">
-						Musique mariage
-					</a>
+			<a href="{{ path('app_catalogue') }}?category=5" class="category-card">
+				<img src="{{ asset('images/mariage.jpg') }}" alt="Mariage" class="category-card__img">
+				<div class="category-card__overlay">
+					<span class="category-card__label">Musique mariage</span>
 				</div>
-			</div>
+			</a>
 
-			<!-- Anniversaire -->
-			<div>
-				<a href="{{ path('app_catalogue') }}?category=7">
-					<img src="{{ asset('images/anniverssaire.jpg') }}" alt="Anniversaire" style="width:100%; height:220px; object-fit:cover; border-radius:10px;">
-				</a>
-				<div style="margin-top:8px;">
-					<a href="{{ path('app_catalogue') }}?category=7">
-						Musique anniversaire
-					</a>
+			<a href="{{ path('app_catalogue') }}?category=7" class="category-card">
+				<img src="{{ asset('images/anniverssaire.jpg') }}" alt="Anniversaire" class="category-card__img">
+				<div class="category-card__overlay">
+					<span class="category-card__label">Musique anniversaire</span>
 				</div>
-			</div>
+			</a>
 
-			<!-- Naissance -->
-			<div>
-				<a href="{{ path('app_catalogue') }}?category=6">
-					<img src="{{ asset('images/naissance.jpg') }}" alt="Naissance" style="width:100%; height:220px; object-fit:cover; border-radius:10px;">
-				</a>
-				<div style="margin-top:8px;">
-					<a href="{{ path('app_catalogue') }}?category=6">
-						Musique naissance
-					</a>
+			<a href="{{ path('app_catalogue') }}?category=6" class="category-card">
+				<img src="{{ asset('images/naissance.jpg') }}" alt="Naissance" class="category-card__img">
+				<div class="category-card__overlay">
+					<span class="category-card__label">Musique naissance</span>
 				</div>
-			</div>
+			</a>
 
-			<!-- Autres -->
-			<div>
-				<a href="{{ path('app_catalogue') }}">
-					<img src="{{ asset('images/autres.jpg') }}" alt="Autres projets" style="width:100%; height:220px; object-fit:cover; border-radius:10px;">
-				</a>
-				<div style="margin-top:8px;">
-					<a href="{{ path('app_catalogue') }}">
-						Autres projets musicaux
-					</a>
+			<a href="{{ path('app_catalogue') }}" class="category-card">
+				<img src="{{ asset('images/autres.jpg') }}" alt="Autres projets" class="category-card__img">
+				<div class="category-card__overlay">
+					<span class="category-card__label">Autres projets musicaux</span>
 				</div>
-			</div>
+			</a>
 
 		</div>
+	</section>
 
-		<!-- DEMOS CLIQUABLES (SANS ACTION) -->
-		<h2>Écoutez quelques exemples</h2>
+	{# ========== DÉMOS ========== #}
+	<section class="home-demos">
+		<h2 class="home-demos__title">Écoutez quelques exemples</h2>
+		<div class="home-demos__grid">
 
-		<div style="margin-top:20px; display:flex; gap:20px; justify-content:center;">
-
-			<button type="button" style="padding:15px 30px; background:#eee; border:1px solid #999; border-radius:6px; cursor:pointer;">
-				Démo 1
+			<button type="button" class="demo-card">
+				<span class="demo-card__icon">▶</span>
+				<span class="demo-card__label">Démo 1</span>
 			</button>
 
-			<button type="button" style="padding:15px 30px; background:#eee; border:1px solid #999; border-radius:6px; cursor:pointer;">
-				Démo 2
+			<button type="button" class="demo-card">
+				<span class="demo-card__icon">▶</span>
+				<span class="demo-card__label">Démo 2</span>
 			</button>
 
-			<button type="button" style="padding:15px 30px; background:#eee; border:1px solid #999; border-radius:6px; cursor:pointer;">
-				Démo 3
+			<button type="button" class="demo-card">
+				<span class="demo-card__icon">▶</span>
+				<span class="demo-card__label">Démo 3</span>
 			</button>
 
 		</div>
-
-	</div>
+	</section>
 
 {% endblock %}

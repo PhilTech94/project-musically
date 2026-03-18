@@ -8,17 +8,52 @@
 {% endblock %}
 
 {% block body %}
-	<div style="max-width: 900px; margin: 60px auto; font-family: Arial, sans-serif;">
+
+	<div class="devis">
 
 		{% for message in app.flashes('success') %}
-			<div style="padding:10px; margin:15px 0; border:1px solid #0a0; background:#efe;">
+			<div class="form-alert form-alert--success">
+				✓
 				{{ message }}
 			</div>
 		{% endfor %}
 
-		{{ form_start(form) }}
-		{{ form_widget(form) }}
-		<button type="submit">Envoyer</button>
+		{{ form_start(form, {attr: {class: 'devis__form'}}) }}
+
+		<div class="form-field">
+			{{ form_label(form.firstName, null, {label_attr: {class: 'form-field__label'}}) }}
+			{{ form_widget(form.firstName, {attr: {class: 'form-field__input'}}) }}
+			{{ form_errors(form.firstName) }}
+		</div>
+
+		<div class="form-field">
+			{{ form_label(form.lastName, null, {label_attr: {class: 'form-field__label'}}) }}
+			{{ form_widget(form.lastName, {attr: {class: 'form-field__input'}}) }}
+			{{ form_errors(form.lastName) }}
+		</div>
+
+		<div class="form-field">
+			{{ form_label(form.phone, null, {label_attr: {class: 'form-field__label'}}) }}
+			{{ form_widget(form.phone, {attr: {class: 'form-field__input'}}) }}
+			{{ form_errors(form.phone) }}
+		</div>
+
+		<div class="form-field">
+			{{ form_label(form.email, null, {label_attr: {class: 'form-field__label'}}) }}
+			{{ form_widget(form.email, {attr: {class: 'form-field__input'}}) }}
+			{{ form_errors(form.email) }}
+		</div>
+
+		<div class="form-field">
+			{{ form_label(form.description, null, {label_attr: {class: 'form-field__label'}}) }}
+			{{ form_widget(form.description, {attr: {class: 'form-field__input form-field__input--textarea'}}) }}
+			{{ form_errors(form.description) }}
+		</div>
+
+		<button type="submit" class="form-submit">Envoyer</button>
+
 		{{ form_end(form) }}
+
 	</div>
+
 {% endblock %}
