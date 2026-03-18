@@ -419,36 +419,173 @@ a:hover {
     display: none;
 }
 
-/* ========== ACCUEIL ========== */
-.home__subtitle {
-    font-size: 1.1rem;
-    color: var(--color-text-light);
-    margin-top: 8px;
+/* ========== ACCUEIL — HERO ========== */
+.hero {
+    background: linear-gradient(135deg, var(--color-primary) 0%, #2d2d4e 100%);
+    color: var(--color-white);
+    padding: 100px 20px;
+    text-align: center;
+    margin: -40px -20px 60px -20px;
 }
 
-.home__demos {
-    margin: 40px auto;
+.hero__content {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.hero__title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 16px 0;
+    color: var(--color-white);
+}
+
+.hero__subtitle {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0 0 40px 0;
+    letter-spacing: 0.05em;
+}
+
+.hero__cta {
+    display: inline-block;
+    background: var(--color-accent);
+    color: var(--color-primary);
+    padding: 14px 36px;
+    border-radius: var(--radius);
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.hero__cta:hover {
+    background: var(--color-accent-hover);
+    color: var(--color-primary);
+    transform: translateY(-2px);
+}
+
+/* ========== ACCUEIL — CATÉGORIES ========== */
+.home-categories {
+    margin-bottom: 60px;
+}
+
+.home-categories__title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 0 24px 0;
+    color: var(--color-text);
     text-align: center;
 }
 
-.home__demos-grid {
+.home-categories__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.category-card {
+    position: relative;
+    border-radius: var(--radius);
+    overflow: hidden;
+    display: block;
+    text-decoration: none;
+}
+
+.category-card__img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.category-card:hover .category-card__img {
+    transform: scale(1.05);
+}
+
+.category-card__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(26, 26, 46, 0.85) 0%, rgba(26, 26, 46, 0.1) 60%);
+    display: flex;
+    align-items: flex-end;
+    padding: 20px;
+    transition: background 0.3s;
+}
+
+.category-card:hover .category-card__overlay {
+    background: linear-gradient(to top, rgba(26, 26, 46, 0.95) 0%, rgba(26, 26, 46, 0.3) 60%);
+}
+
+.category-card__label {
+    color: var(--color-white);
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+/* ========== ACCUEIL — DÉMOS ========== */
+.home-demos {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.home-demos__title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 0 24px 0;
+    color: var(--color-text);
+}
+
+.home-demos__grid {
     display: flex;
     gap: 20px;
     justify-content: center;
-    margin-top: 20px;
+    flex-wrap: wrap;
 }
 
 .demo-card {
-    width: 200px;
-    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 160px;
+    padding: 24px 20px;
+    background: var(--color-white);
     border: 1.5px solid var(--color-border);
     border-radius: var(--radius);
-    background: var(--color-white);
-    transition: box-shadow 0.2s;
+    cursor: pointer;
+    transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
+    font-family: var(--font-main);
 }
 
 .demo-card:hover {
     box-shadow: var(--shadow);
+    transform: translateY(-2px);
+    border-color: var(--color-accent);
+}
+
+.demo-card__icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    color: var(--color-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+}
+
+.demo-card__label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-text);
 }
 
 /* ========== AUTHENTIFICATION ========== */
@@ -544,4 +681,142 @@ a:hover {
 .nav__link--user {
     color: var(--color-accent);
     cursor: default;
+}
+
+/* ========== CONTACT ========== */
+.contact {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 48px;
+    max-width: 900px;
+    margin: 0 auto;
+    align-items: start;
+}
+
+.contact__info {
+    background: var(--color-primary);
+    border-radius: var(--radius);
+    padding: 32px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact__info-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    margin: 0 0 8px 0;
+}
+
+.contact__info-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.9rem;
+}
+
+.contact__info-icon {
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.contact__info-item a {
+    color: rgba(255, 255, 255, 0.85);
+    transition: color 0.2s;
+}
+
+.contact__info-item a:hover {
+    color: var(--color-accent);
+}
+
+.contact__form-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact__form-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin: 0;
+    color: var(--color-text);
+}
+
+.contact__form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* ========== CHAMPS DE FORMULAIRE (global) ========== */
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-field__label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.form-field__input {
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 0.65rem 0.9rem;
+    font-size: 0.95rem;
+    font-family: var(--font-main);
+    background: var(--color-white);
+    color: var(--color-text);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    width: 100%;
+}
+
+.form-field__input:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.15);
+}
+
+.form-field__input--textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.form-submit {
+    background: var(--color-accent);
+    color: var(--color-primary);
+    border: none;
+    padding: 0.9rem 2rem;
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: var(--radius);
+    font-family: var(--font-main);
+    transition: background 0.2s, transform 0.2s;
+    align-self: flex-start;
+}
+
+.form-submit:hover {
+    background: var(--color-accent-hover);
+    transform: translateY(-1px);
+}
+
+
+/* ========== DEVIS ========== */
+.devis {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.devis__form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 24px;
 }

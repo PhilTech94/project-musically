@@ -8,60 +8,79 @@
 {% endblock %}
 
 {% block body %}
+
 	<div
-		style="max-width: 900px; margin: 60px auto; font-family: Arial, sans-serif;">
+		class="contact">
 
-		<!-- Informations administrateur -->
-		<div style="margin-bottom: 40px; padding: 20px; border: 1px solid #ddd; border-radius: 8px;">
-			<h3>Coordonnées</h3>
-			<p>
-				<strong>Téléphone :</strong>
-				06 00 00 00 00</p>
-			<p>
-				<strong>Adresse :</strong>
-				10 rue de Paris, 75000 Paris</p>
-			<p>
-				<strong>Email :</strong>
-				contact@musically.fr</p>
-		</div>
+		{# ========== COORDONNÉES ========== #}
+		<div class="contact__info">
+			<h2 class="contact__info-title">Coordonnées</h2>
 
-		<!-- Formulaire -->
-		<h3>Envoyer un message</h3>
-
-		{# Message de succès après envoi #}
-		{% for message in app.flashes('success') %}
-			<div style="margin: 15px 0; padding: 12px; border: 1px solid #0a0; border-radius: 8px;">
-				{{ message }}
+			<div class="contact__info-item">
+				<span class="contact__info-icon">📞</span>
+				<span>06 00 00 00 00</span>
 			</div>
-		{% endfor %}
 
-		{{ form_start(form) }}
+			<div class="contact__info-item">
+				<span class="contact__info-icon">📍</span>
+				<span>10 rue de Paris, 75000 Paris</span>
+			</div>
 
-		<div style="margin-bottom: 10px;">
-			{{ form_row(form.firstname) }}
+			<div class="contact__info-item">
+				<span class="contact__info-icon">✉️</span>
+				<a href="mailto:contact@musically.fr">contact@musically.fr</a>
+			</div>
 		</div>
 
-		<div style="margin-bottom: 10px;">
-			{{ form_row(form.lastname) }}
+		{# ========== FORMULAIRE ========== #}
+		<div class="contact__form-wrapper">
+			<h2 class="contact__form-title">Envoyer un message</h2>
+
+			{# Message de succès #}
+			{% for message in app.flashes('success') %}
+				<div class="form-alert form-alert--success">
+					✓
+					{{ message }}
+				</div>
+			{% endfor %}
+
+			{{ form_start(form, {attr: {class: 'contact__form'}}) }}
+
+			<div class="form-field">
+				{{ form_label(form.firstname, null, {label_attr: {class: 'form-field__label'}}) }}
+				{{ form_widget(form.firstname, {attr: {class: 'form-field__input'}}) }}
+				{{ form_errors(form.firstname) }}
+			</div>
+
+			<div class="form-field">
+				{{ form_label(form.lastname, null, {label_attr: {class: 'form-field__label'}}) }}
+				{{ form_widget(form.lastname, {attr: {class: 'form-field__input'}}) }}
+				{{ form_errors(form.lastname) }}
+			</div>
+
+			<div class="form-field">
+				{{ form_label(form.phone, null, {label_attr: {class: 'form-field__label'}}) }}
+				{{ form_widget(form.phone, {attr: {class: 'form-field__input'}}) }}
+				{{ form_errors(form.phone) }}
+			</div>
+
+			<div class="form-field">
+				{{ form_label(form.email, null, {label_attr: {class: 'form-field__label'}}) }}
+				{{ form_widget(form.email, {attr: {class: 'form-field__input'}}) }}
+				{{ form_errors(form.email) }}
+			</div>
+
+			<div class="form-field">
+				{{ form_label(form.message, null, {label_attr: {class: 'form-field__label'}}) }}
+				{{ form_widget(form.message, {attr: {class: 'form-field__input form-field__input--textarea'}}) }}
+				{{ form_errors(form.message) }}
+			</div>
+
+			<button type="submit" class="form-submit">Envoyer</button>
+
+			{{ form_end(form) }}
 		</div>
-
-		<div style="margin-bottom: 10px;">
-			{{ form_row(form.phone) }}
-		</div>
-
-		<div style="margin-bottom: 10px;">
-			{{ form_row(form.email) }}
-		</div>
-
-		<div style="margin-bottom: 10px;">
-			{{ form_row(form.message) }}
-		</div>
-
-		<button type="submit" style="padding:10px; cursor:pointer;">
-			Envoyer
-		</button>
-
-		{{ form_end(form) }}
 
 	</div>
+
 {% endblock %}
