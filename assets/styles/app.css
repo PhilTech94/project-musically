@@ -820,3 +820,119 @@ a:hover {
     gap: 16px;
     margin-top: 24px;
 }
+
+/* ========== À PROPOS ========== */
+.about-hero {
+    background: linear-gradient(135deg, var(--color-primary) 0%, #2d2d4e 100%);
+    color: var(--color-white);
+    padding: 80px 20px;
+    text-align: center;
+    margin: -40px -20px 60px -20px;
+}
+
+.about-hero__title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0 0 12px 0;
+    color: var(--color-white);
+}
+
+.about-hero__subtitle {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+    letter-spacing: 0.05em;
+}
+
+/* ========== BIO ========== */
+.about-bio {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 48px;
+    align-items: center;
+    max-width: 900px;
+    margin: 0 auto 60px auto;
+}
+
+.about-bio__title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 0 20px 0;
+    color: var(--color-text);
+    border-left: 3px solid var(--color-accent);
+    padding-left: 12px;
+}
+
+.about-bio__text p {
+    color: var(--color-text-light);
+    line-height: 1.8;
+    margin: 0 0 16px 0;
+}
+
+.about-bio__cta {
+    display: inline-block;
+    margin-top: 8px;
+    background: var(--color-accent);
+    color: var(--color-primary);
+    padding: 12px 28px;
+    border-radius: var(--radius);
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.about-bio__cta:hover {
+    background: var(--color-accent-hover);
+    color: var(--color-primary);
+    transform: translateY(-2px);
+}
+
+.about-bio__image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-bio__image-placeholder {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+}
+
+/* ========== CHIFFRES CLÉS ========== */
+.about-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto 60px auto;
+    text-align: center;
+}
+
+.about-stat {
+    background: var(--color-white);
+    border-radius: var(--radius);
+    padding: 32px 20px;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.about-stat__number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-accent);
+}
+
+.about-stat__label {
+    font-size: 0.85rem;
+    color: var(--color-text-light);
+    font-weight: 500;
+}
