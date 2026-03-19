@@ -12,29 +12,23 @@ security:
         dev:
             pattern: ^/(_profiler|_wdt|assets|build)/
             security: false
+
         main:
             lazy: true
             provider: app_user_provider
-            # Symfony gère automatiquement la vérification du mot de passe
-            # et la création de session quand le formulaire est soumis sur app_login
-            form_login:
-                login_path: app_login
-                check_path: app_login
-                default_target_path: app_home
-                username_parameter: email
-                password_parameter: password
-            # Symfony invalide la session et redirige vers app_home
+            custom_authenticator: App\Security\LoginFormAuthenticator
             logout:
                 path: app_logout
-                target: app_home
-            # Cookie persistant 7 jours
+
             remember_me:
                 secret: '%kernel.secret%'
                 lifetime: 604800
+                path: /
 
     access_control:
         - { path: ^/login, roles: PUBLIC_ACCESS }
         - { path: ^/register, roles: PUBLIC_ACCESS }
+        - { path: ^/admin, roles: ROLE_ADMIN }
 
 when@test:
     security:

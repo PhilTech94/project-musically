@@ -137,6 +137,20 @@ class Billing
         return $this;
     }
 
+    public function getStatusLabel(): string
+    {
+        return match ($this->status) {
+            BillingStatus::DRAFT => 'Brouillon',
+            BillingStatus::QUOTE => 'Devis envoyé',
+            BillingStatus::PENDING => 'En attente',
+            BillingStatus::ACCEPTED => 'Paiement accepté',
+            BillingStatus::REFUSED => 'Paiement refusé',
+            BillingStatus::CANCELLED => 'Annulé',
+            BillingStatus::REFUNDED => 'Remboursé',
+            default => '',
+        };
+    }
+
     /**
      * @return Collection<int, BillingSound>
      */
@@ -151,6 +165,7 @@ class Billing
             $this->billingSounds->add($billingSound);
             $billingSound->setBilling($this);
         }
+
         return $this;
     }
 
@@ -161,6 +176,7 @@ class Billing
                 $billingSound->setBilling(null);
             }
         }
+
         return $this;
     }
 
