@@ -1,13 +1,13 @@
 /* ========== BASE ========== */
 body {
-    background-color: skyblue;
+    background-color: rgb(233, 233, 233);
     font-family: Arial, sans-serif;
 }
 
 /* ========== NAVIGATION ========== */
 .nav {
     padding: 15px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #ffffff;
     margin-bottom: 20px;
     display: flex;
     align-items: center;

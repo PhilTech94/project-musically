@@ -1,0 +1,54 @@
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block content %}
+	<div class="admin-dashboard">
+		<div class="dashboard-header">
+			<h1>🎵 Musically Admin</h1>
+			<p>Tableau de bord de gestion du projet Musically</p>
+		</div>
+
+		<div class="dashboard-links">
+			<a href="{{ path('admin_sound_index') }}" class="dashboard-link-card">
+				<h2>Sons</h2>
+				<p>Gérer les sons du catalogue</p>
+			</a>
+
+			<a href="{{ path('admin_category_index') }}" class="dashboard-link-card">
+				<h2>Catégories</h2>
+				<p>Gérer les catégories</p>
+			</a>
+
+			<a href="{{ path('admin_style_index') }}" class="dashboard-link-card">
+				<h2>Styles</h2>
+				<p>Gérer les styles</p>
+			</a>
+
+			<a href="{{ path('admin_billing_index') }}" class="dashboard-link-card">
+				<h2>Facturation</h2>
+				<p>Gérer les factures</p>
+			</a>
+		</div>
+
+		<div class="dashboard-stats">
+			<div class="stat-card">
+				<h3>{{ soundCount }}</h3>
+				<p>Nombre de sons</p>
+			</div>
+
+			<div class="stat-card">
+				<h3>{{ categoryCount }}</h3>
+				<p>Nombre de catégories</p>
+			</div>
+
+			<div class="stat-card">
+				<h3>{{ styleCount }}</h3>
+				<p>Nombre de styles</p>
+			</div>
+
+			<div class="stat-card">
+				<h3>{{ billingCount }}</h3>
+				<p>Nombre de factures</p>
+			</div>
+		</div>
+	</div>
+{% endblock %}
