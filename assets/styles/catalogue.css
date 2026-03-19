@@ -1,9 +1,8 @@
-/* --- Layout général --- */
+/* ========== LAYOUT GÉNÉRAL ========== */
 .catalogue {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
-    font-family: Arial, sans-serif;
 }
 
 /* ==========================================
@@ -17,16 +16,16 @@
     gap: 8px;
     margin-bottom: 24px;
     padding-bottom: 16px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid var(--color-border);
 }
 
 .tag {
     display: inline-block;
     padding: 6px 16px;
     border-radius: 20px;
-    border: 1.5px solid #333;
+    border: 1.5px solid var(--color-primary);
     background-color: transparent;
-    color: #333;
+    color: var(--color-primary);
     text-decoration: none;
     font-size: 13px;
     font-weight: 500;
@@ -37,14 +36,14 @@
 
 .tag:hover,
 .tag--active {
-    background-color: #333;
-    color: #fff;
+    background-color: var(--color-primary);
+    color: var(--color-white);
 }
 
 .tags-separator {
     width: 1px;
     height: 24px;
-    background-color: #ddd;
+    background-color: var(--color-border);
     margin: 0 4px;
 }
 
@@ -60,22 +59,22 @@
     flex-wrap: wrap;
 }
 
-/* Conteneur de chaque dropdown */
 .dropdown {
     position: relative;
 }
 
-/* Bouton déclencheur */
 .dropdown__trigger {
     display: inline-flex;
     align-items: center;
     gap: 8px;
     padding: 10px 16px;
-    border: 1.5px solid #333;
-    border-radius: 8px;
-    background-color: #fff;
+    border: 1.5px solid var(--color-primary);
+    border-radius: var(--radius);
+    background-color: var(--color-white);
+    color: var(--color-primary);
     font-size: 14px;
     font-weight: 500;
+    font-family: var(--font-main);
     cursor: pointer;
     transition: all 0.2s;
     white-space: nowrap;
@@ -83,11 +82,10 @@
 
 .dropdown__trigger:hover,
 .dropdown--open .dropdown__trigger {
-    background-color: #333;
-    color: #fff;
+    background-color: var(--color-primary);
+    color: var(--color-white);
 }
 
-/* Flèche du dropdown */
 .dropdown__arrow {
     font-size: 10px;
     transition: transform 0.2s;
@@ -97,17 +95,16 @@
     transform: rotate(180deg);
 }
 
-/* Panneau déroulant */
 .dropdown__panel {
     display: none;
     position: absolute;
     top: calc(100% + 6px);
     left: 0;
     min-width: 200px;
-    background-color: #fff;
-    border: 1.5px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    background-color: var(--color-white);
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
     padding: 12px;
     z-index: 100;
 }
@@ -116,13 +113,12 @@
     display: block;
 }
 
-/* Options dans le panneau */
 .dropdown__option {
     display: block;
     padding: 8px 12px;
-    border-radius: 6px;
+    border-radius: var(--radius);
     text-decoration: none;
-    color: #333;
+    color: var(--color-text);
     font-size: 14px;
     transition: background-color 0.15s;
     cursor: pointer;
@@ -130,11 +126,12 @@
 
 .dropdown__option:hover,
 .dropdown__option--active {
-    background-color: #f0f0f0;
+    background-color: var(--color-bg);
+    color: var(--color-text);
     font-weight: 600;
 }
 
-/* Champs prix dans le panneau */
+/* ========== FILTRE PRIX ========== */
 .price-inputs {
     display: flex;
     align-items: center;
@@ -144,13 +141,20 @@
 .price-inputs input {
     width: 80px;
     padding: 6px 10px;
-    border: 1.5px solid #ddd;
-    border-radius: 6px;
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius);
     font-size: 14px;
+    font-family: var(--font-main);
+    transition: border-color 0.2s;
+}
+
+.price-inputs input:focus {
+    outline: none;
+    border-color: var(--color-accent);
 }
 
 .price-inputs span {
-    color: #999;
+    color: var(--color-text-light);
     font-size: 13px;
 }
 
@@ -159,28 +163,30 @@
     width: 100%;
     margin-top: 12px;
     padding: 8px;
-    background-color: #333;
-    color: #fff;
+    background-color: var(--color-accent);
+    color: var(--color-primary);
     border: none;
-    border-radius: 6px;
+    border-radius: var(--radius);
     font-size: 14px;
+    font-weight: 600;
+    font-family: var(--font-main);
     cursor: pointer;
     transition: background-color 0.2s;
 }
 
 .btn-apply:hover {
-    background-color: #555;
+    background-color: var(--color-accent-hover);
 }
 
-/* Bouton réinitialiser */
+/* ========== BOUTON RÉINITIALISER ========== */
 .btn-reset {
     display: inline-flex;
     align-items: center;
     gap: 6px;
     padding: 10px 16px;
-    border: 1.5px solid #e74c3c;
-    border-radius: 8px;
-    color: #e74c3c;
+    border: 1.5px solid #c0392b;
+    border-radius: var(--radius);
+    color: #c0392b;
     text-decoration: none;
     font-size: 14px;
     font-weight: 500;
@@ -188,8 +194,8 @@
 }
 
 .btn-reset:hover {
-    background-color: #e74c3c;
-    color: #fff;
+    background-color: #c0392b;
+    color: var(--color-white);
 }
 
 /* ==========================================
@@ -202,7 +208,7 @@
 
 .sounds-count {
     font-size: 14px;
-    color: #666;
+    color: var(--color-text-light);
     margin-bottom: 20px;
 }
 
@@ -213,18 +219,19 @@
 }
 
 .sound-card {
-    background-color: #fff;
-    border-radius: 12px;
+    background-color: var(--color-white);
+    border-radius: var(--radius);
     padding: 20px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    box-shadow: var(--shadow);
     display: flex;
     flex-direction: column;
     gap: 12px;
-    transition: box-shadow 0.2s;
+    transition: box-shadow 0.2s, transform 0.2s;
 }
 
 .sound-card:hover {
-    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
 }
 
 .sound-card__header {
@@ -235,8 +242,9 @@
 
 .sound-card__title {
     font-size: 16px;
-    font-weight: bold;
+    font-weight: 700;
     margin: 0;
+    color: var(--color-text);
 }
 
 .btn-play {
@@ -244,8 +252,8 @@
     height: 36px;
     border-radius: 50%;
     border: none;
-    background-color: #333;
-    color: #fff;
+    background-color: var(--color-primary);
+    color: var(--color-accent);
     font-size: 14px;
     cursor: pointer;
     display: flex;
@@ -256,7 +264,8 @@
 }
 
 .btn-play:hover {
-    background-color: #555;
+    background-color: var(--color-accent);
+    color: var(--color-primary);
 }
 
 .sound-card__tags {
@@ -274,17 +283,17 @@
     align-items: center;
     gap: 8px;
     padding: 8px 16px;
-    background-color: #2ecc71;
-    color: #fff;
+    background-color: var(--color-accent);
+    color: var(--color-primary);
     border: none;
     border-radius: 20px;
     font-size: 14px;
-    font-weight: bold;
+    font-weight: 700;
+    font-family: var(--font-main);
     cursor: pointer;
-    text-decoration: none;
     transition: background-color 0.2s;
 }
 
 .btn-buy:hover {
-    background-color: #27ae60;
+    background-color: var(--color-accent-hover);
 }

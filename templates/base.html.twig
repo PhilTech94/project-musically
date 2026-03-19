@@ -1,21 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 	<head>
 		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 		<title>
 			{% block title %}Projet Musically
 			{% endblock %}
 		</title>
 
-		<link
-		rel="icon" href="data:image/svg+xml,
-						<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22>
-						<text y=%221.2em%22 font-size=%2296%22>🎵</text>
-						</svg>">
+		<link rel="icon" href="data:image/svg+xml,
+																					            <svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22>
+																					            <text y=%221.2em%22 font-size=%2296%22>🎵</text>
+																					            </svg>">
 
-		{# Un seul bloc stylesheets #}
-		{% block stylesheets %}{% endblock %}
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"> {% block stylesheets %}{% endblock %}
 
 		{% block javascripts %}
 			{% block importmap %}
@@ -24,16 +25,31 @@
 		{% endblock %}
 	</head>
 
-	<body
-		style="margin:0; font-family: Arial, sans-serif;">
+	<body>
 
 		<!-- MENU -->
 		<nav class="nav">
-			<a href="{{ path('app_home') }}">Accueil</a>
-			<a href="{{ path('app_catalogue') }}">Catalogue</a>
-			<a href="{{ path('app_about') }}">À propos</a>
-			<a href="{{ path('app_contact') }}">Contact</a>
-			<a href="{{ path('app_devis') }}">Devis</a>
+			<a href="{{ path('app_home') }}" class="nav__logo">
+				<img src="{{ asset('images/logoMusically.png') }}" alt="Musically" class="nav__logo-img">
+			</a>
+
+			<div class="nav__links">
+				<a href="{{ path('app_home') }}" class="nav__link">Accueil</a>
+				<a href="{{ path('app_catalogue') }}" class="nav__link">Catalogue</a>
+				<a href="{{ path('app_about') }}" class="nav__link">À propos</a>
+				<a href="{{ path('app_contact') }}" class="nav__link">Contact</a>
+				<a href="{{ path('app_devis') }}" class="nav__link">Devis</a>
+
+				{# app.user est fourni automatiquement par Symfony — null si non connecté #}
+				{% if app.user %}
+					<span class="nav__link nav__link--user">{{ app.user.firstname }}</span>
+					<a href="{{ path('app_logout') }}" class="nav__link">Se déconnecter</a>
+				{% else %}
+					<a href="{{ path('app_login') }}" class="nav__link">Se connecter</a>
+					<a href="{{ path('app_register') }}" class="nav__link">S'inscrire</a>
+				{% endif %}
+			</div>
+
 			<button id="cart-btn" class="nav-cart-btn" aria-label="Ouvrir le panier">
 				<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 					<circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
@@ -43,15 +59,21 @@
 			</button>
 		</nav>
 
-		<!-- H1 DE LA PAGE -->
-		{% block h1 %}{% endblock %}
+		<main
+			class="main">
+			<!-- H1 DE LA PAGE -->
+			{% block h1 %}{% endblock %}
 
-		<!-- CONTENU -->
-		{% block body %}{% endblock %}
+			<!-- CONTENU -->
+			{% block body %}{% endblock %}
+		</main>
 
 		<!-- FOOTER -->
 		<footer class="footer">
-			<a href="{{ path('app_legal') }}">Mentions légales</a>
+			<p class="footer__copy">©
+				{{ "now"|date("Y") }}
+				Musically — Pierre Martin, compositeur</p>
+			<a href="{{ path('app_legal') }}" class="footer__link">Mentions légales</a>
 		</footer>
 
 		{% include 'cart/_drawer.html.twig' %}

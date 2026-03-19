@@ -3,27 +3,48 @@
 {% block title %}À propos
 {% endblock %}
 
-{% block h1 %}
-	<h1 class="page-h1">À propos</h1>
-{% endblock %}
+{% block h1 %}{% endblock %}
 
 {% block body %}
-	<div style="max-width: 900px; margin: 40px auto;">
 
-		<p>
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-						        Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-		</p>
+	{# ========== HERO ========== #}
+	<section class="about-hero">
+		<h1 class="about-hero__title">À propos</h1>
+		<p class="about-hero__subtitle">Compositeur indépendant basé à Paris</p>
+	</section>
 
-		<p>
-			Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-						        nisi ut aliquip ex ea commodo consequat.
-		</p>
+	{# ========== BIO ========== #}
+	<section class="about-bio">
+		<div class="about-bio__text">
+			<h2 class="about-bio__title">Pierre Martin</h2>
+			<p>Compositeur indépendant depuis plus de 10 ans, je crée des musiques originales pour accompagner vos moments de vie les plus précieux. Formé au Conservatoire National Supérieur de Musique de Paris, j'ai développé un univers musical riche et varié, allant des compositions classiques aux sonorités électroniques contemporaines.</p>
+			<p>Chaque projet est unique. Que ce soit pour un mariage, une naissance, un anniversaire ou tout autre événement, je compose une musique sur mesure qui reflète votre histoire et vos émotions.</p>
+			<p>Mon catalogue regroupe aujourd'hui plus de 200 compositions originales, disponibles à la vente et immédiatement téléchargeables.</p>
+			<a href="{{ path('app_catalogue') }}" class="about-bio__cta">Découvrir le catalogue</a>
+		</div>
+		<div class="about-bio__image">
+			<img src="{{ asset('images/photoMusicien.jpg') }}" alt="Pierre Martin, compositeur" class="about-bio__photo">
+		</div>
+	</section>
 
-		<p>
-			Duis aute irure dolor in reprehenderit in voluptate velit esse
-						        cillum dolore eu fugiat nulla pariatur.
-		</p>
+	{# ========== CHIFFRES CLÉS ========== #}
+	<section class="about-stats">
+		<div class="about-stat">
+			<span class="about-stat__number">10+</span>
+			<span class="about-stat__label">Années d'expérience</span>
+		</div>
+		<div class="about-stat">
+			<span class="about-stat__number">200+</span>
+			<span class="about-stat__label">Compositions originales</span>
+		</div>
+		<div class="about-stat">
+			<span class="about-stat__number">500+</span>
+			<span class="about-stat__label">Clients satisfaits</span>
+		</div>
+		<div class="about-stat">
+			<span class="about-stat__number">4</span>
+			<span class="about-stat__label">Styles musicaux</span>
+		</div>
+	</section>
 
-	</div>
 {% endblock %}
