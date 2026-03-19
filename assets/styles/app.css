@@ -52,16 +52,21 @@ a:hover {
 }
 
 .nav__logo {
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: var(--color-white);
     text-decoration: none;
-    letter-spacing: 0.03em;
     flex-shrink: 0;
+    display: flex;
+    align-items: center;
 }
 
-.nav__logo:hover {
-    color: var(--color-accent);
+.nav__logo-img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+    transition: opacity 0.2s;
+}
+
+.nav__logo:hover .nav__logo-img {
+    opacity: 0.8;
 }
 
 .nav__links {
@@ -847,7 +852,7 @@ a:hover {
 /* ========== BIO ========== */
 .about-bio {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 48px;
     align-items: center;
     max-width: 900px;
@@ -894,15 +899,16 @@ a:hover {
     align-items: center;
 }
 
-.about-bio__image-placeholder {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    background: var(--color-primary);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 5rem;
+.about-bio__photo {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    min-height: 380px;
+    object-fit: cover;
+    object-position: right bottom;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    justify-self: end;
 }
 
 /* ========== CHIFFRES CLÉS ========== */
