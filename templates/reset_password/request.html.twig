@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mot de passe oublié — Musically
+{% endblock %}
+
+{% block h1 %}
+	<h1 class="page-h1">Mot de passe oublié</h1>
+{% endblock %}
+
+{% block body %}
+	{% for flash_error in app.flashes('reset_password_error') %}
+		<div class="form-alert form-alert--error">{{ flash_error }}</div>
+	{% endfor %}
+
+	{{ form_start(requestForm, {attr: {class: 'auth-form'}}) }}
+	<div class="auth-form__field">
+		{{ form_label(requestForm.email, null, {label_attr: {class: 'auth-form__label'}}) }}
+		{{ form_widget(requestForm.email, {attr: {class: 'auth-form__input'}}) }}
+		{{ form_errors(requestForm.email) }}
+	</div>
+
+	<button type="submit" class="auth-form__submit">Envoyer le lien de réinitialisation</button>
+	{{ form_end(requestForm) }}
+
+	<p class="auth-form__switch">
+		<a href="{{ path('app_login') }}">Retour à la connexion</a>
+	</p>
+{% endblock %}

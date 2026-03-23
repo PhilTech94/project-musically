@@ -31,6 +31,10 @@
 			<input type="password" id="password" name="password" class="auth-form__input" autocomplete="current-password" required>
 		</div>
 
+		<div class="auth-form__forgot">
+			<a href="{{ path('app_forgot_password_request') }}">Mot de passe oublié ?</a>
+		</div>
+
 		<div class="auth-form__remember">
 			<input type="checkbox" id="remember_me" name="_remember_me">
 			<label for="remember_me">Se souvenir de moi</label>
