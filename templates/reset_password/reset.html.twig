@@ -1,15 +1,19 @@
-<p>Bonjour,</p>
+{% extends 'base.html.twig' %}
 
-<p>Vous avez demandé à réinitialiser votre mot de passe Musically.</p>
+{% block title %}Nouveau mot de passe — Musically
+{% endblock %}
 
-<p>
-    <a href="{{ url('app_reset_password', {token: resetToken.token}) }}">
-        Cliquez ici pour réinitialiser votre mot de passe
-    </a>
-</p>
+{% block h1 %}
+	<h1 class="page-h1">Nouveau mot de passe</h1>
+{% endblock %}
 
-<p>Ce lien expirera dans {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.</p>
-
-<p>Si vous n'êtes pas à l'origine de cette demande, ignorez cet email.</p>
-
-<p>L'équipe Musically</p>
+{% block body %}
+	{{ form_start(resetForm, {attr: {class: 'auth-form'}}) }}
+	<div class="auth-form__field">
+		{{ form_label(resetForm.plainPassword, null, {label_attr: {class: 'auth-form__label'}}) }}
+		{{ form_widget(resetForm.plainPassword, {attr: {class: 'auth-form__input'}}) }}
+		{{ form_errors(resetForm.plainPassword) }}
+	</div>
+	<button type="submit" class="auth-form__submit">Réinitialiser le mot de passe</button>
+	{{ form_end(resetForm) }}
+{% endblock %}
