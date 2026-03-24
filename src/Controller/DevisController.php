@@ -19,8 +19,8 @@ final class DevisController extends AbstractController
 
         // Si l'utilisateur est connecté, on pré-remplit le formulaire avec ses données
         $user = $this->getUser();
-        assert($user instanceof \App\Entity\User);
         if ($user) {
+            assert($user instanceof \App\Entity\User);
             $billing->setFirstname($user->getFirstname());
             $billing->setLastname($user->getLastname());
             $billing->setPhone($user->getPhone());
