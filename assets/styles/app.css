@@ -126,9 +126,9 @@ a:hover {
 
 /* ========== COMMUN : H1 ========== */
 .page-h1 {
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-weight: 700;
-    margin: 0 0 32px 0;
+    margin: 0;
     color: var(--color-text);
 }
 
@@ -425,14 +425,6 @@ a:hover {
 }
 
 /* ========== ACCUEIL — HERO ========== */
-/* ========== ACCUEIL — HERO SLIDER ========== */
-.hero-slider {
-    position: relative;
-    margin: -40px -20px 60px -20px;
-    height: 560px;
-    overflow: hidden;
-    border-radius: 0 0 12px 12px;
-}
 
 .hero-slider__slides {
     position: relative;
@@ -507,34 +499,27 @@ a:hover {
     transform: translateY(-2px);
 }
 
-.hero-slider__controls {
-    position: absolute;
-    left: 50%;
-    bottom: 24px;
-    transform: translateX(-50%);
-    z-index: 3;
-    display: flex;
-    gap: 10px;
+/* ===== HEROES ===== */
+
+/* Base commune */
+.hero,
+.about-hero,
+.page-hero {
+    background: linear-gradient(135deg, var(--color-primary) 0%, #2d2d4e 100%);
+    color: var(--color-white);
+    text-align: center;
+    margin: -40px -20px 60px -20px;
 }
 
-.hero-slider__dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    border: none;
-    background: rgba(255, 255, 255, 0.45);
-    cursor: pointer;
-    transition: transform 0.2s, background 0.2s;
-    padding: 0;
-}
+/* Padding spécifique à chaque hero */
+.hero         { padding: 100px 20px; }
+.about-hero,
+.page-hero    { padding: 80px 20px; }
 
-.hero-slider__dot:hover {
-    transform: scale(1.15);
-    background: rgba(255, 255, 255, 0.75);
-}
-
-.hero-slider__dot--active {
-    background: var(--color-accent);
+/* H1 à l'intérieur du page-hero */
+.page-hero .page-h1 {
+    color: var(--color-white);
+    margin: 0;
 }
 
 /* ========== ACCUEIL — CATÉGORIES ========== */
@@ -892,26 +877,13 @@ a:hover {
 }
 
 /* ========== À PROPOS ========== */
-.about-hero {
-    background: linear-gradient(135deg, var(--color-primary) 0%, #2d2d4e 100%);
-    color: var(--color-white);
-    padding: 80px 20px;
-    text-align: center;
-    margin: -40px -20px 60px -20px;
-}
+
 
 .about-hero__title {
     font-size: 2.5rem;
     font-weight: 700;
     margin: 0 0 12px 0;
     color: var(--color-white);
-}
-
-.about-hero__subtitle {
-    font-size: 1.1rem;
-    color: rgba(255, 255, 255, 0.7);
-    margin: 0;
-    letter-spacing: 0.05em;
 }
 
 /* ========== BIO ========== */
