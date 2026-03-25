@@ -10,9 +10,9 @@
 		</title>
 
 		<link rel="icon" href="data:image/svg+xml,
-									<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22>
-									<text y=%221.2em%22 font-size=%2296%22>🎵</text>
-									</svg>">
+															<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22>
+															<text y=%221.2em%22 font-size=%2296%22>🎵</text>
+															</svg>">
 
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,34 +29,41 @@
 
 		<!-- MENU -->
 		<nav class="nav">
+
 			<a href="{{ path('app_home') }}" class="nav__logo">
 				<img src="{{ asset('images/logoMusically.png') }}" alt="Musically" class="nav__logo-img">
 			</a>
 
-			<div class="nav__links">
-				<a href="{{ path('app_home') }}" class="nav__link">Accueil</a>
-				<a href="{{ path('app_catalogue') }}" class="nav__link">Catalogue</a>
-				<a href="{{ path('app_devis') }}" class="nav__link">Devis</a>
-				<a href="{{ path('app_about') }}" class="nav__link">À propos</a>
-				<a href="{{ path('app_contact') }}" class="nav__link">Contact</a>
+			<div class="nav__right">
 
-				{# app.user est fourni automatiquement par Symfony — null si non connecté #}
-				{% if app.user %}
-					<span class="nav__link nav__link--user">{{ app.user.firstname }}</span>
-					<a href="{{ path('app_logout') }}" class="nav__link">Se déconnecter</a>
-				{% else %}
-					<a href="{{ path('app_login') }}" class="nav__link">Se connecter</a>
-					<a href="{{ path('app_register') }}" class="nav__link">S'inscrire</a>
-				{% endif %}
+				<div class="nav__links">
+					<a href="{{ path('app_home') }}" class="nav__link">Accueil</a>
+					<a href="{{ path('app_catalogue') }}" class="nav__link">Catalogue</a>
+					<a href="{{ path('app_devis') }}" class="nav__link">Devis</a>
+					<a href="{{ path('app_about') }}" class="nav__link">À propos</a>
+					<a href="{{ path('app_contact') }}" class="nav__link">Contact</a>
+				</div>
+
+				<div class="nav__auth">
+					{% if app.user %}
+						<span class="nav__link nav__link--user">{{ app.user.firstname }}</span>
+						<a href="{{ path('app_logout') }}" class="nav__link">Se déconnecter</a>
+					{% else %}
+						<a href="{{ path('app_login') }}" class="nav__link">Se connecter</a>
+						<a href="{{ path('app_register') }}" class="nav__link nav__link--cta">S'inscrire</a>
+					{% endif %}
+				</div>
+
+				<button id="cart-btn" class="nav-cart-btn" aria-label="Ouvrir le panier">
+					<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+						<circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+						<path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+					</svg>
+					<span id="cart-badge" class="nav-cart-badge is-hidden">0</span>
+				</button>
+
 			</div>
 
-			<button id="cart-btn" class="nav-cart-btn" aria-label="Ouvrir le panier">
-				<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-					<circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
-					<path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
-				</svg>
-				<span id="cart-badge" class="nav-cart-badge is-hidden">0</span>
-			</button>
 		</nav>
 
 		<main
