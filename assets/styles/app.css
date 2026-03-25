@@ -424,7 +424,13 @@ a:hover {
     display: none;
 }
 
-/* ========== ACCUEIL — HERO ========== */
+/* ========== ACCUEIL — HERO SLIDER ========== */
+.hero-slider {
+    position: relative;
+    height: 480px;
+    margin: -40px -20px 60px -20px;
+    overflow: hidden;
+}
 
 .hero-slider__slides {
     position: relative;
@@ -499,13 +505,6 @@ a:hover {
     transform: translateY(-2px);
 }
 
-.hero-slider {
-    position: relative;
-    height: 480px;
-    margin: -40px -20px 60px -20px;
-    overflow: hidden;
-}
-
 .hero-slider__controls {
     position: absolute;
     bottom: 20px;
@@ -531,24 +530,23 @@ a:hover {
     background: var(--color-white);
 }
 
-/* ===== HEROES ===== */
-
-/* Base commune */
-.hero,
+/* ========== PAGES SECONDAIRES — HERO ========== */
 .about-hero,
 .page-hero {
     background: linear-gradient(135deg, var(--color-primary) 0%, #2d2d4e 100%);
     color: var(--color-white);
     text-align: center;
+    padding: 80px 20px;
     margin: -40px -20px 60px -20px;
 }
 
-/* Padding spécifique à chaque hero */
-.hero         { padding: 100px 20px; }
-.about-hero,
-.page-hero    { padding: 80px 20px; }
+.about-hero__title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0;
+    color: var(--color-white);
+}
 
-/* H1 à l'intérieur du page-hero */
 .page-hero .page-h1 {
     color: var(--color-white);
     margin: 0;
@@ -908,15 +906,6 @@ a:hover {
     margin-top: 24px;
 }
 
-/* ========== À PROPOS ========== */
-
-
-.about-hero__title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin: 0 0 12px 0;
-    color: var(--color-white);
-}
 
 /* ========== BIO ========== */
 .about-bio {
