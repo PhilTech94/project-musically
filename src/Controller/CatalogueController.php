@@ -19,12 +19,29 @@ class CatalogueController extends AbstractController
         CategoryRepository $categoryRepository,
         StyleRepository $styleRepository,
     ): Response {
-        $categoryId = $request->query->getInt('category') ?: null;
-        $styleId    = $request->query->getInt('style') ?: null;
-        $priceMin   = $request->query->has('price_min') ? $request->query->getInt('price_min') * 100 : null;
-        $priceMax   = $request->query->has('price_max') ? $request->query->getInt('price_max') * 100 : null;
-        $sort       = $request->query->getString('sort', 'name');
-        $order      = $request->query->getString('order', 'ASC');
+        $categoryParam = $request->query->get('category');
+        $categoryId = null;
+
+        if ($categoryParam !== null && $categoryParam !== '') {
+            if (ctype_digit((string) $categoryParam)) {
+                $categoryId = (int) $categoryParam;
+            } else {
+                $categoryMap = [
+                    'mariage' => 5,
+                    'naissance' => 6,
+                    'anniversaire' => 7,
+                    'autres' => null,
+                ];
+
+                $categoryId = $categoryMap[$categoryParam] ?? null;
+            }
+        }
+
+        $styleId  = $request->query->getInt('style') ?: null;
+        $priceMin = $request->query->has('price_min') ? $request->query->getInt('price_min') * 100 : null;
+        $priceMax = $request->query->has('price_max') ? $request->query->getInt('price_max') * 100 : null;
+        $sort     = $request->query->getString('sort', 'name');
+        $order    = $request->query->getString('order', 'ASC');
 
         $sounds     = $soundRepository->findByFilters($categoryId, $styleId, $priceMin, $priceMax, $sort, $order);
         $categories = $categoryRepository->findAll();

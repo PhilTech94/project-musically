@@ -8,41 +8,115 @@
 {% block body %}
 
 	{# ========== HERO ========== #}
-	<section class="hero">
-		<div class="hero__content">
-			<h1 class="hero__title">Des créations musicales pour tous vos événements</h1>
-			<p class="hero__subtitle">Mariage • Anniversaire • Soirée • Naissance</p>
-			<a href="{{ path('app_catalogue') }}" class="hero__cta">Découvrir le catalogue</a>
+	<section class="hero-slider">
+		<div class="hero-slider__slides">
+			<div class="hero-slide hero-slide--active" style="background-image: url('{{ asset('images/mariage.jpg') }}');">
+				<div class="hero-slide__overlay"></div>
+				<div class="hero-slide__content">
+					<h1 class="hero-slide__title">Des créations musicales pour tous vos événements</h1>
+					<p class="hero-slide__subtitle">Mariage • Une musique unique pour le plus beau jour de votre vie</p>
+					<a href="{{ path('app_catalogue') }}?category=mariage" class="hero-slide__cta">Découvrir le catalogue</a>
+				</div>
+			</div>
+
+			<div class="hero-slide" style="background-image: url('{{ asset('images/anniverssaire.jpg') }}');">
+				<div class="hero-slide__overlay"></div>
+				<div class="hero-slide__content">
+					<h2 class="hero-slide__title">Célébrez chaque anniversaire en musique</h2>
+					<p class="hero-slide__subtitle">Anniversaire • Des créations personnalisées pour des moments inoubliables</p>
+					<a href="{{ path('app_catalogue') }}?category=anniversaire" class="hero-slide__cta">Voir les créations</a>
+				</div>
+			</div>
+
+			<div class="hero-slide" style="background-image: url('{{ asset('images/naissance.jpg') }}');">
+				<div class="hero-slide__overlay"></div>
+				<div class="hero-slide__content">
+					<h2 class="hero-slide__title">Immortalisez une naissance avec émotion</h2>
+					<p class="hero-slide__subtitle">Naissance • Une bande-son douce et mémorable pour accueillir un nouvel enfant</p>
+					<a href="{{ path('app_catalogue') }}?category=naissance" class="hero-slide__cta">Explorer</a>
+				</div>
+			</div>
+
+			<div class="hero-slide" style="background-image: url('{{ asset('images/autres.jpg') }}');">
+				<div class="hero-slide__overlay"></div>
+				<div class="hero-slide__content">
+					<h2 class="hero-slide__title">Et aussi pour tous vos autres projets</h2>
+					<p class="hero-slide__subtitle">Autres projets musicaux • Offrez une création originale pour chaque occasion</p>
+					<a href="{{ path('app_catalogue') }}?category=autres" class="hero-slide__cta">Découvrir</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="hero-slider__controls">
+			<button type="button" class="hero-slider__dot hero-slider__dot--active" data-slide="0" aria-label="Aller au slide 1"></button>
+			<button type="button" class="hero-slider__dot" data-slide="1" aria-label="Aller au slide 2"></button>
+			<button type="button" class="hero-slider__dot" data-slide="2" aria-label="Aller au slide 3"></button>
+			<button type="button" class="hero-slider__dot" data-slide="3" aria-label="Aller au slide 4"></button>
 		</div>
 	</section>
 
+	<script>
+		document.addEventListener('DOMContentLoaded', function () {
+const slides = document.querySelectorAll('.hero-slide');
+const dots = document.querySelectorAll('.hero-slider__dot');
+
+if (! slides.length || ! dots.length) {
+return;
+}
+
+let currentIndex = 0;
+
+function showSlide(index) {
+slides.forEach((slide, i) => {
+slide.classList.toggle('hero-slide--active', i === index);
+});
+
+dots.forEach((dot, i) => {
+dot.classList.toggle('hero-slider__dot--active', i === index);
+});
+
+currentIndex = index;
+}
+
+dots.forEach((dot, index) => {
+dot.addEventListener('click', function () {
+showSlide(index);
+});
+});
+
+setInterval(function () {
+const nextIndex = (currentIndex + 1) % slides.length;
+showSlide(nextIndex);
+}, 5000);
+});
+	</script>
 	{# ========== GRILLE CATÉGORIES ========== #}
 	<section class="home-categories">
 		<h2 class="home-categories__title">Explorez par occasion</h2>
 		<div class="home-categories__grid">
 
-			<a href="{{ path('app_catalogue') }}?category=5" class="category-card">
+			<a href="{{ path('app_catalogue') }}?category=mariage" class="category-card">
 				<img src="{{ asset('images/mariage.jpg') }}" alt="Mariage" class="category-card__img">
 				<div class="category-card__overlay">
 					<span class="category-card__label">Musique mariage</span>
 				</div>
 			</a>
 
-			<a href="{{ path('app_catalogue') }}?category=7" class="category-card">
+			<a href="{{ path('app_catalogue') }}?category=anniversaire" class="category-card">
 				<img src="{{ asset('images/anniverssaire.jpg') }}" alt="Anniversaire" class="category-card__img">
 				<div class="category-card__overlay">
 					<span class="category-card__label">Musique anniversaire</span>
 				</div>
 			</a>
 
-			<a href="{{ path('app_catalogue') }}?category=6" class="category-card">
+			<a href="{{ path('app_catalogue') }}?category=naissance" class="category-card">
 				<img src="{{ asset('images/naissance.jpg') }}" alt="Naissance" class="category-card__img">
 				<div class="category-card__overlay">
 					<span class="category-card__label">Musique naissance</span>
 				</div>
 			</a>
 
-			<a href="{{ path('app_catalogue') }}" class="category-card">
+			<a href="{{ path('app_catalogue') }}?category=autres" class="category-card">
 				<img src="{{ asset('images/autres.jpg') }}" alt="Autres projets" class="category-card__img">
 				<div class="category-card__overlay">
 					<span class="category-card__label">Autres projets musicaux</span>
