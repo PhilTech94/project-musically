@@ -499,6 +499,38 @@ a:hover {
     transform: translateY(-2px);
 }
 
+.hero-slider {
+    position: relative;
+    height: 480px;
+    margin: -40px -20px 60px -20px;
+    overflow: hidden;
+}
+
+.hero-slider__controls {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 3;
+}
+
+.hero-slider__dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 2px solid var(--color-white);
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.2s;
+}
+
+.hero-slider__dot--active {
+    background: var(--color-white);
+}
+
 /* ===== HEROES ===== */
 
 /* Base commune */
