@@ -51,6 +51,37 @@ a:hover {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
+/* Groupe droit : liens nav + auth + panier */
+.nav__right {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* Liens de navigation principaux */
+.nav__links {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Séparateur visuel entre nav et auth */
+.nav__links::after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 20px;
+    background-color: rgba(255, 255, 255, 0.2);
+    margin: 0 12px;
+}
+
+/* Groupe auth : connexion / inscription */
+.nav__auth {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
 .nav__logo {
     text-decoration: none;
     flex-shrink: 0;
@@ -69,12 +100,6 @@ a:hover {
     opacity: 0.8;
 }
 
-.nav__links {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
 .nav__link {
     color: rgba(255, 255, 255, 0.8);
     text-decoration: none;
@@ -88,6 +113,40 @@ a:hover {
 .nav__link:hover {
     color: var(--color-white);
     background-color: rgba(255, 255, 255, 0.1);
+}
+
+.nav__link--user {
+    color: var(--color-accent);
+    cursor: default;
+}
+
+.nav__link--cta {
+    color: var(--color-primary);
+    background-color: var(--color-accent);
+    font-weight: 600;
+}
+
+.nav__link--cta:hover {
+    color: var(--color-primary);
+    background-color: var(--color-accent-hover);
+}
+
+/* Prénom de l'utilisateur connecté */
+.nav__link--user {
+    color: var(--color-accent);
+    cursor: default;
+}
+
+/* Bouton S'inscrire — mis en valeur */
+.nav__link--cta {
+    color: var(--color-primary);
+    background-color: var(--color-accent);
+    font-weight: 600;
+}
+
+.nav__link--cta:hover {
+    color: var(--color-primary);
+    background-color: var(--color-accent-hover);
 }
 
 /* ========== MAIN ========== */
