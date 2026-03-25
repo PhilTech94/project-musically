@@ -20,7 +20,7 @@
 		</div>
 	{% endfor %}
 
-	<form class="auth-form" action="{{ path('app_login') }}" method="post">
+	<form class="auth-form" action="{{ path('app_login') }}" method="post" data-turbo="false">
 		<div class="auth-form__field">
 			<label for="email" class="auth-form__label">Adresse email</label>
 			<input type="email" id="email" name="email" class="auth-form__input" value="{{ last_username }}" autocomplete="email" required>
