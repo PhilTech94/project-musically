@@ -10,7 +10,7 @@
 	{# ========== HERO ========== #}
 	<section class="hero-slider">
 		<div class="hero-slider__slides">
-			<div class="hero-slide hero-slide--active" style="background-image: url('{{ asset('images/mariage.jpg') }}');">
+			<div class="hero-slide hero-slide--active hero-slide--mariage">
 				<div class="hero-slide__overlay"></div>
 				<div class="hero-slide__content">
 					<h1 class="hero-slide__title">Des créations musicales pour tous vos événements</h1>
@@ -19,7 +19,7 @@
 				</div>
 			</div>
 
-			<div class="hero-slide" style="background-image: url('{{ asset('images/anniverssaire.jpg') }}');">
+			<div class="hero-slide hero-slide--anniversaire">
 				<div class="hero-slide__overlay"></div>
 				<div class="hero-slide__content">
 					<h2 class="hero-slide__title">Célébrez chaque anniversaire en musique</h2>
@@ -28,7 +28,7 @@
 				</div>
 			</div>
 
-			<div class="hero-slide" style="background-image: url('{{ asset('images/naissance.jpg') }}');">
+			<div class="hero-slide hero-slide--naissance">
 				<div class="hero-slide__overlay"></div>
 				<div class="hero-slide__content">
 					<h2 class="hero-slide__title">Immortalisez une naissance avec émotion</h2>
@@ -37,7 +37,7 @@
 				</div>
 			</div>
 
-			<div class="hero-slide" style="background-image: url('{{ asset('images/autres.jpg') }}');">
+			<div class="hero-slide hero-slide--autres">
 				<div class="hero-slide__overlay"></div>
 				<div class="hero-slide__content">
 					<h2 class="hero-slide__title">Et aussi pour tous vos autres projets</h2>
@@ -90,6 +90,7 @@ showSlide(nextIndex);
 }, 5000);
 });
 	</script>
+
 	{# ========== GRILLE CATÉGORIES ========== #}
 	<section class="home-categories">
 		<h2 class="home-categories__title">Explorez par occasion</h2>

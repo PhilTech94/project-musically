@@ -1060,3 +1060,18 @@ a:hover {
     color: var(--color-text-light);
     font-weight: 500;
 }
+.hero-slide--mariage {
+    background-image: url('/images/mariage.jpg');
+}
+
+.hero-slide--anniversaire {
+    background-image: url('/images/anniverssaire.jpg');
+}
+
+.hero-slide--naissance {
+    background-image: url('/images/naissance.jpg');
+}
+
+.hero-slide--autres {
+    background-image: url('/images/autres.jpg');
+}
