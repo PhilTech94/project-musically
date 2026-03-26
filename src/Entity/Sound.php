@@ -45,6 +45,12 @@ class Sound
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $url = null;
 
+    #[ORM\Column(length: 10, nullable: true)]
+    private ?string $duration = null;
+
+    #[ORM\Column(length: 50, nullable: true)]
+    private ?string $badge = null;
+
     public function __construct()
     {
         $this->billingSounds = new ArrayCollection();
@@ -150,6 +156,30 @@ class Sound
     public function setUrl(?string $url): static
     {
         $this->url = $url;
+
+        return $this;
+    }
+
+    public function getDuration(): ?string
+    {
+        return $this->duration;
+    }
+
+    public function setDuration(?string $duration): static
+    {
+        $this->duration = $duration;
+
+        return $this;
+    }
+
+    public function getBadge(): ?string
+    {
+        return $this->badge;
+    }
+
+    public function setBadge(?string $badge): static
+    {
+        $this->badge = $badge;
 
         return $this;
     }
