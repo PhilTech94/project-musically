@@ -75,7 +75,7 @@
 
 			{# Dropdown Trier par #}
 			<div class="dropdown" id="dropdown-sort">
-				<button class="dropdown__trigger" onclick="toggleDropdown('dropdown-sort')">
+				<button class="dropdown__trigger {{ sort != 'name' or order != 'ASC' ? 'dropdown__trigger--active' }}" onclick="toggleDropdown('dropdown-sort')">
 					Trier par
 					<span class="dropdown__arrow">▼</span>
 				</button>
@@ -99,67 +99,69 @@
 
 		</section>
 
-		{# ========== PARTIE 3 : SONS ========== #}
-		<section class="catalogue__sounds">
-			<p class="sounds-count">{{ sounds|length }}
-				son(s) disponible(s)</p>
+	</section>
 
-			{% if sounds is empty %}
-				<p>Aucun son ne correspond à votre recherche.</p>
-			{% else %}
-				<div class="sounds-grid">
-					{% for sound in sounds %}
-						<div
-							class="sound-card">
-							{# ── Ligne 1 : titre + bouton achat ── #}
-							<div class="sound-card__header">
-								<h3 class="sound-card__title">{{ sound.name }}</h3>
-								<button class="btn-buy" onclick="addToCart({{ sound.id }})">
-									🛒 Ajouter –
-									{{ (sound.price / 100)|number_format(2, ',', ' ') }}
-									€
-								</button>
-							</div>
+	{# ========== PARTIE 3 : SONS ========== #}
+	<section class="catalogue__sounds">
+		<p class="sounds-count">{{ sounds|length }}
+			son(s) disponible(s)</p>
 
-							{# ── Ligne 2 : bouton play + durée ── #}
-							<div class="sound-card__player">
-								<button class="btn-play" title="Écouter l'extrait">▶</button>
-								<span class="sound-card__duration">⏱
-									{{ sound.duration ?? '–' }}</span>
-							</div>
-
-							{# ── Ligne 3 : tags ── #}
-							<div class="sound-card__tags">
-								<a href="{{ path('app_catalogue', {category: sound.category.id}) }}" class="tag tag--small tag--category">
-									{{ sound.category.name }}
-								</a>
-								<a href="{{ path('app_catalogue', {style: sound.style.id}) }}" class="tag tag--small tag--style">
-									{{ sound.style.name }}
-								</a>
-							</div>
-
-							{# ── Ligne 4 : badge (conditionnel) ── #}
-							{% if sound.badge %}
-								<div class="sound-card__badge-row">
-									<span class="sound-card__badge sound-card__badge--{{ sound.badge }}">
-										{% if sound.badge == 'bestseller' %}⭐ Bestseller
-											{% elseif sound.badge == 'nouveaute' %}🆕 Nouveauté
-											{% elseif sound.badge == 'coupdecoeur' %}♥ Coup de cœur
-										{% endif %}
-									</span>
-								</div>
-							{% endif %}
-
+		{% if sounds is empty %}
+			<p>Aucun son ne correspond à votre recherche.</p>
+		{% else %}
+			<div class="sounds-grid">
+				{% for sound in sounds %}
+					<div
+						class="sound-card">
+						{# ── Ligne 1 : titre + bouton achat ── #}
+						<div class="sound-card__header">
+							<h3 class="sound-card__title">{{ sound.name }}</h3>
+							<button class="btn-buy" onclick="addToCart({{ sound.id }})">
+								🛒 Ajouter –
+								{{ (sound.price / 100)|number_format(2, ',', ' ') }}
+								€
+							</button>
 						</div>
-					{% endfor %}
-				</div>
-			{% endif %}
-		</section>
 
-	</div>
+						{# ── Ligne 2 : bouton play + durée ── #}
+						<div class="sound-card__player">
+							<button class="btn-play" title="Écouter l'extrait">▶</button>
+							<span class="sound-card__duration">⏱
+								{{ sound.duration ?? '–' }}</span>
+						</div>
 
-	<script>
-		function toggleDropdown(id) { // Ferme tous les autres dropdowns ouverts
+						{# ── Ligne 3 : tags ── #}
+						<div class="sound-card__tags">
+							<a href="{{ path('app_catalogue', {category: sound.category.id}) }}" class="tag tag--small tag--category">
+								{{ sound.category.name }}
+							</a>
+							<a href="{{ path('app_catalogue', {style: sound.style.id}) }}" class="tag tag--small tag--style">
+								{{ sound.style.name }}
+							</a>
+						</div>
+
+						{# ── Ligne 4 : badge (conditionnel) ── #}
+						{% if sound.badge %}
+							<div class="sound-card__badge-row">
+								<span class="sound-card__badge sound-card__badge--{{ sound.badge }}">
+									{% if sound.badge == 'bestseller' %}⭐ Bestseller
+										{% elseif sound.badge == 'nouveaute' %}🆕 Nouveauté
+										{% elseif sound.badge == 'coupdecoeur' %}♥ Coup de cœur
+									{% endif %}
+								</span>
+							</div>
+						{% endif %}
+
+					</div>
+				{% endfor %}
+			</div>
+		{% endif %}
+	</section>
+
+</div>
+
+<script>
+	function toggleDropdown(id) { // Ferme tous les autres dropdowns ouverts
 document.querySelectorAll('.dropdown').forEach(function (el) {
 if (el.id !== id) {
 el.classList.remove('dropdown--open');
@@ -177,6 +179,4 @@ el.classList.remove('dropdown--open');
 });
 }
 });
-	</script>
-
-{% endblock %}
+</script>{% endblock %}

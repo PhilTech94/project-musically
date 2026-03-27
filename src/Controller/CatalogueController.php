@@ -38,8 +38,11 @@ class CatalogueController extends AbstractController
         }
 
         $styleId  = $request->query->getInt('style') ?: null;
-        $priceMin = $request->query->has('price_min') ? $request->query->getInt('price_min') * 100 : null;
-        $priceMax = $request->query->has('price_max') ? $request->query->getInt('price_max') * 100 : null;
+        $priceMinRaw = $request->query->get('price_min', '');
+        $priceMin = ($priceMinRaw !== '') ? (int) $priceMinRaw * 100 : null;
+
+        $priceMaxRaw = $request->query->get('price_max', '');
+        $priceMax = ($priceMaxRaw !== '') ? (int) $priceMaxRaw * 100 : null;
         $sort     = $request->query->getString('sort', 'name');
         $order    = $request->query->getString('order', 'ASC');
 
