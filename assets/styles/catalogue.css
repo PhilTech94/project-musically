@@ -202,6 +202,10 @@
    PARTIE 3 : SONS
    ========================================== */
 
+/* ==========================================
+   PARTIE 3 : SONS
+   ========================================== */
+
 .catalogue__sounds {
     margin-top: 8px;
 }
@@ -212,20 +216,22 @@
     margin-bottom: 20px;
 }
 
+/* 3 colonnes fixes au lieu de auto-fill */
 .sounds-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
 }
 
+/* ── Card ── */
 .sound-card {
     background-color: var(--color-white);
-    border-radius: var(--radius);
+    border-radius: 16px; /* plus arrondi que --radius (8px) */
     padding: 20px;
     box-shadow: var(--shadow);
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
     transition: box-shadow 0.2s, transform 0.2s;
 }
 
@@ -234,66 +240,151 @@
     transform: translateY(-2px);
 }
 
+/* ── Ligne 1 : titre + bouton achat ── */
 .sound-card__header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 12px;
 }
 
 .sound-card__title {
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 700;
     margin: 0;
     color: var(--color-text);
+    /* Évite que le titre écrase le bouton si le nom est long */
+    flex: 1;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
+/* ── Ligne 2 : durée ── */
+.sound-card__duration {
+    font-size: 12px;
+    color: var(--color-text-light);
+    margin: 0;
+    font-variant-numeric: tabular-nums;
+}
+
+/* ── Ligne 3 : player (play + waveform) ── */
+.sound-card__player {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Bouton play agrandi et bien visible */
 .btn-play {
-    width: 36px;
-    height: 36px;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
     border: none;
     background-color: var(--color-primary);
     color: var(--color-accent);
-    font-size: 14px;
+    font-size: 16px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    transition: background-color 0.2s;
+    transition: background-color 0.2s, transform 0.15s;
 }
 
 .btn-play:hover {
     background-color: var(--color-accent);
     color: var(--color-primary);
+    transform: scale(1.08);
 }
 
+/* Waveform décoratif */
+.sound-card__waveform {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    flex: 1;
+    height: 24px; /* hauteur fixe du conteneur */
+}
+
+.sound-card__waveform-bar {
+    display: block;
+    width: 3px;
+    border-radius: 2px;
+    background-color: var(--color-accent);
+    opacity: 0.6;
+    /* La hauteur est définie inline via Twig */
+}
+
+/* ── Ligne 4 : tags (plus petits) ── */
 .sound-card__tags {
     display: flex;
     flex-wrap: wrap;
     gap: 6px;
 }
 
-.sound-card__footer {
-    margin-top: auto;
+/* Variante small pour les tags à l'intérieur des cards */
+.tag--small {
+    font-size: 11px;
+    padding: 3px 10px;
 }
 
+/* ── Ligne 5 : badge ── */
+.sound-card__badge-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: auto; /* pousse le badge vers le bas de la card */
+}
+
+.sound-card__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 20px;
+}
+
+/* Couleurs par type de badge */
+.sound-card__badge--bestseller {
+    background-color: rgba(201, 168, 76, 0.15);
+    color: var(--color-accent-hover);
+    border: 1px solid rgba(201, 168, 76, 0.4);
+}
+
+.sound-card__badge--nouveaute {
+    background-color: rgba(52, 152, 219, 0.12);
+    color: #2980b9;
+    border: 1px solid rgba(52, 152, 219, 0.35);
+}
+
+.sound-card__badge--coupdecoeur {
+    background-color: rgba(192, 57, 43, 0.1);
+    color: #c0392b;
+    border: 1px solid rgba(192, 57, 43, 0.3);
+}
+
+/* ── Bouton achat (repositionné dans le header) ── */
 .btn-buy {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    padding: 8px 16px;
+    gap: 6px;
+    padding: 7px 14px;
     background-color: var(--color-accent);
     color: var(--color-primary);
     border: none;
     border-radius: 20px;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 700;
     font-family: var(--font-main);
     cursor: pointer;
-    transition: background-color 0.2s;
+    flex-shrink: 0;
+    transition: background-color 0.2s, transform 0.15s;
 }
 
 .btn-buy:hover {
     background-color: var(--color-accent-hover);
+    transform: scale(1.04);
 }
