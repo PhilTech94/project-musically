@@ -111,39 +111,24 @@
 					{% for sound in sounds %}
 						<div
 							class="sound-card">
-
 							{# ── Ligne 1 : titre + bouton achat ── #}
 							<div class="sound-card__header">
 								<h3 class="sound-card__title">{{ sound.name }}</h3>
 								<button class="btn-buy" onclick="addToCart({{ sound.id }})">
-									🛒
+									🛒 Ajouter –
 									{{ (sound.price / 100)|number_format(2, ',', ' ') }}
 									€
 								</button>
 							</div>
 
-							{# ── Ligne 2 : durée ── #}
-							<p class="sound-card__duration">{{ sound.duration ?? '–' }}</p>
-
-							{# ── Ligne 3 : bouton play + waveform ── #}
+							{# ── Ligne 2 : bouton play + durée ── #}
 							<div class="sound-card__player">
 								<button class="btn-play" title="Écouter l'extrait">▶</button>
-								<div class="sound-card__waveform">
-									{% set waveforms = {
-                        'Classique':    [4, 6, 9, 11, 13, 11, 9, 6, 4,  6,  9, 11,  9,  6, 4],
-                        'Jazz':         [6, 9, 7, 12,  8, 14, 10, 7, 9,  6, 12,  8, 10,  9, 6],
-                        'Hip-Hop':      [14, 8, 16, 10, 16, 12, 16, 8, 14, 16, 10, 16,  8, 14, 12],
-                        'Électronique': [16, 4, 16,  4, 16,  8, 16, 4, 16,  4, 12,  4, 16,  8, 16],
-                        'Lo-Fi':        [5, 7, 6,  9,  7, 10,  8, 6,  7,  9,  6,  8,  7,  5, 6],
-                    } %}
-									{% set bars = waveforms[sound.style.name] ?? [6, 8, 10, 8, 6, 9, 11, 9, 6, 8, 10, 8, 6, 8, 10] %}
-									{% for bar in bars %}
-										<span class="sound-card__waveform-bar" style="height: {{ bar }}px;"></span>
-									{% endfor %}
-								</div>
+								<span class="sound-card__duration">⏱
+									{{ sound.duration ?? '–' }}</span>
 							</div>
 
-							{# ── Ligne 4 : tags ── #}
+							{# ── Ligne 3 : tags ── #}
 							<div class="sound-card__tags">
 								<a href="{{ path('app_catalogue', {category: sound.category.id}) }}" class="tag tag--small">
 									{{ sound.category.name }}
@@ -153,7 +138,7 @@
 								</a>
 							</div>
 
-							{# ── Ligne 5 : badge (conditionnel) ── #}
+							{# ── Ligne 4 : badge (conditionnel) ── #}
 							{% if sound.badge %}
 								<div class="sound-card__badge-row">
 									<span class="sound-card__badge sound-card__badge--{{ sound.badge }}">
