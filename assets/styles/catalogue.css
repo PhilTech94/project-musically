@@ -202,10 +202,6 @@
    PARTIE 3 : SONS
    ========================================== */
 
-/* ==========================================
-   PARTIE 3 : SONS
-   ========================================== */
-
 .catalogue__sounds {
     margin-top: 8px;
 }
@@ -216,22 +212,21 @@
     margin-bottom: 20px;
 }
 
-/* 3 colonnes fixes au lieu de auto-fill */
 .sounds-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    gap: 24px;
 }
 
 /* ── Card ── */
 .sound-card {
     background-color: var(--color-white);
-    border-radius: 16px; /* plus arrondi que --radius (8px) */
-    padding: 20px;
+    border-radius: 16px;
+    padding: 24px;
     box-shadow: var(--shadow);
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 14px;
     transition: box-shadow 0.2s, transform 0.2s;
 }
 
@@ -253,7 +248,6 @@
     font-weight: 700;
     margin: 0;
     color: var(--color-text);
-    /* Évite que le titre écrase le bouton si le nom est long */
     flex: 1;
     min-width: 0;
     white-space: nowrap;
@@ -261,22 +255,13 @@
     text-overflow: ellipsis;
 }
 
-/* ── Ligne 2 : durée ── */
-.sound-card__duration {
-    font-size: 12px;
-    color: var(--color-text-light);
-    margin: 0;
-    font-variant-numeric: tabular-nums;
-}
-
-/* ── Ligne 3 : player (play + waveform) ── */
+/* ── Ligne 2 : player (play + durée) ── */
 .sound-card__player {
     display: flex;
     align-items: center;
     gap: 12px;
 }
 
-/* Bouton play agrandi et bien visible */
 .btn-play {
     width: 48px;
     height: 48px;
@@ -299,42 +284,29 @@
     transform: scale(1.08);
 }
 
-/* Waveform décoratif */
-.sound-card__waveform {
-    display: flex;
-    align-items: center;
-    gap: 3px;
-    flex: 1;
-    height: 24px; /* hauteur fixe du conteneur */
+.sound-card__duration {
+    font-size: 13px;
+    color: var(--color-text-light);
+    font-variant-numeric: tabular-nums;
 }
 
-.sound-card__waveform-bar {
-    display: block;
-    width: 3px;
-    border-radius: 2px;
-    background-color: var(--color-accent);
-    opacity: 0.6;
-    /* La hauteur est définie inline via Twig */
-}
-
-/* ── Ligne 4 : tags (plus petits) ── */
+/* ── Ligne 3 : tags ── */
 .sound-card__tags {
     display: flex;
     flex-wrap: wrap;
     gap: 6px;
 }
 
-/* Variante small pour les tags à l'intérieur des cards */
 .tag--small {
     font-size: 11px;
     padding: 3px 10px;
 }
 
-/* ── Ligne 5 : badge ── */
+/* ── Ligne 4 : badge ── */
 .sound-card__badge-row {
     display: flex;
     justify-content: flex-end;
-    margin-top: auto; /* pousse le badge vers le bas de la card */
+    margin-top: auto;
 }
 
 .sound-card__badge {
@@ -347,7 +319,6 @@
     border-radius: 20px;
 }
 
-/* Couleurs par type de badge */
 .sound-card__badge--bestseller {
     background-color: rgba(201, 168, 76, 0.15);
     color: var(--color-accent-hover);
@@ -366,7 +337,7 @@
     border: 1px solid rgba(192, 57, 43, 0.3);
 }
 
-/* ── Bouton achat (repositionné dans le header) ── */
+/* ── Bouton achat ── */
 .btn-buy {
     display: inline-flex;
     align-items: center;
