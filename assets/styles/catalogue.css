@@ -359,3 +359,31 @@
     background-color: var(--color-accent-hover);
     transform: scale(1.04);
 }
+
+/* ── Tags colorés : catégorie vs style (SCRUM-85 + SCRUM-121) ── */
+
+.tag--category {
+    border-color: var(--color-primary);
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+.tag--category:hover,
+.tag--category.tag--active {
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-primary);
+}
+
+.tag--style {
+    border-color: var(--color-accent);
+    background-color: transparent;
+    color: var(--color-accent-hover);
+}
+
+.tag--style:hover,
+.tag--style.tag--active {
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-primary);
+}

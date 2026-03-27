@@ -25,7 +25,7 @@
 
 			{# Tags catégories #}
 			{% for category in categories %}
-				<a href="{{ path('app_catalogue', {category: category.id}) }}" class="tag {{ activeCategoryId == category.id ? 'tag--active' }}">
+				<a href="{{ path('app_catalogue', {category: category.id}) }}" class="tag tag--category {{ activeCategoryId == category.id ? 'tag--active' }}">
 					{{ category.name }}
 				</a>
 			{% endfor %}
@@ -34,7 +34,7 @@
 
 			{# Tags styles #}
 			{% for style in styles %}
-				<a href="{{ path('app_catalogue', {style: style.id}) }}" class="tag {{ activeStyleId == style.id ? 'tag--active' }}">
+				<a href="{{ path('app_catalogue', {style: style.id}) }}" class="tag tag--style {{ activeStyleId == style.id ? 'tag--active' }}">
 					{{ style.name }}
 				</a>
 			{% endfor %}
@@ -130,10 +130,10 @@
 
 							{# ── Ligne 3 : tags ── #}
 							<div class="sound-card__tags">
-								<a href="{{ path('app_catalogue', {category: sound.category.id}) }}" class="tag tag--small">
+								<a href="{{ path('app_catalogue', {category: sound.category.id}) }}" class="tag tag--small tag--category">
 									{{ sound.category.name }}
 								</a>
-								<a href="{{ path('app_catalogue', {style: sound.style.id}) }}" class="tag tag--small">
+								<a href="{{ path('app_catalogue', {style: sound.style.id}) }}" class="tag tag--small tag--style">
 									{{ sound.style.name }}
 								</a>
 							</div>
